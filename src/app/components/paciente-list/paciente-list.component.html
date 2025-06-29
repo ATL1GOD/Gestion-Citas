@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Gestión de Pacientes</h2>
+    <a routerLink="/admin/pacientes/nuevo" class="btn btn-primary">
+      <i class="bi bi-person-plus-fill me-2"></i>Registrar Nuevo Paciente
+    </a>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Nombre Completo</th>
+              <th>Email</th>
+              <th>CURP</th>
+              <th>Fecha de Nac.</th>
+              <th>Tipo de Sangre</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let paciente of pacientes">
+              <td>{{ paciente.usuario.nombre }} {{ paciente.usuario.apellidoPat }} {{ paciente.usuario.apellidoMat }}</td>
+              <td>{{ paciente.usuario.email }}</td>
+              <td>{{ paciente.curp }}</td>
+              <td>{{ paciente.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+              <td>{{ paciente.tipoSangre }}</td>
+              <td class="text-end">
+                <a [routerLink]="['/admin/pacientes/editar', paciente.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+                <button (click)="eliminarPaciente(paciente.id)" class="btn btn-sm btn-danger" title="Eliminar">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="pacientes.length === 0 && !error">
+              <td colspan="6" class="text-center text-muted">No hay pacientes para mostrar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

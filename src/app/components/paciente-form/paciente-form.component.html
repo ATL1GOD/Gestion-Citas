@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="mb-0">{{ isEditMode ? 'Editar Paciente' : 'Registrar Nuevo Paciente' }}</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="pacienteForm" (ngSubmit)="onSubmit()">
+            
+            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+            <fieldset formGroupName="usuario" class="border p-3 mb-3">
+              <legend class="w-auto px-2 fs-6">Datos Personales y de Cuenta</legend>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="nombre" class="form-label">Nombre(s)</label>
+                  <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="apellidoPat" class="form-label">Apellido Paterno</label>
+                  <input type="text" id="apellidoPat" class="form-control" formControlName="apellidoPat">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="apellidoMat" class="form-label">Apellido Materno</label>
+                  <input type="text" id="apellidoMat" class="form-control" formControlName="apellidoMat">
+                </div>
+              </div>
+              <div class="row">
+                 <div class="col-md-4 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" class="form-control" formControlName="email">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input type="tel" id="telefono" class="form-control" formControlName="telefono">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="contrasena" class="form-label">Contraseña</label>
+                  <input type="password" id="contrasena" class="form-control" formControlName="contrasena" autocomplete="new-password">
+                  <div class="form-text" *ngIf="isEditMode">Dejar en blanco para no modificar.</div>
+                </div>
+              </div>
+            </fieldset>
+
+             <fieldset class="border p-3 mb-3">
+              <legend class="w-auto px-2 fs-6">Información Médica</legend>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="curp" class="form-label">CURP</label>
+                  <input type="text" id="curp" class="form-control" formControlName="curp" style="text-transform: uppercase;">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                  <input type="date" id="fechaNacimiento" class="form-control" formControlName="fechaNacimiento">
+                </div>
+                 <div class="col-md-4 mb-3">
+                  <label for="tipoSangre" class="form-label">Tipo de Sangre</label>
+                  <input type="text" id="tipoSangre" class="form-control" formControlName="tipoSangre">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mb-3">
+                  <label for="alergias" class="form-label">Alergias Conocidas</label>
+                  <textarea id="alergias" class="form-control" formControlName="alergias" rows="3"></textarea>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="d-flex justify-content-end mt-3">
+              <a routerLink="/admin/pacientes" class="btn btn-secondary me-2">Cancelar</a>
+              <button type="submit" class="btn btn-primary" [disabled]="pacienteForm.invalid">
+                {{ isEditMode ? 'Actualizar Paciente' : 'Guardar Paciente' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

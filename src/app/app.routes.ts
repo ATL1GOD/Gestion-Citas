@@ -6,14 +6,14 @@ import { UsuarioListComponent } from '../app/components/usuario-list/usuario-lis
 import { UsuarioFormComponent } from '../app/components/usuario-form/usuario-form.component';
 import { TipoUsuarioListComponent } from '../app/components/tipo-usuario-list/tipo-usuario-list.component';
 import { TipoUsuarioFormComponent } from '../app/components/tipo-usuario-form/tipo-usuario-form.component';
-/*
-// Sección 2: Personal y Pacientes
-import { EspecialidadListComponent } from './features/admin/especialidades/especialidad-list/especialidad-list.component';
-import { EspecialidadFormComponent } from './features/admin/especialidades/especialidad-form/especialidad-form.component';
-import { PacienteListComponent } from './features/admin/pacientes/paciente-list/paciente-list.component';
-import { PacienteFormComponent } from './features/admin/pacientes/paciente-form/paciente-form.component';
-// NOTA: Asume que has creado los componentes para Doctores y Recepcionistas con los nombres correspondientes.
 
+// Sección 2: Personal y Pacientes
+import { EspecialidadListComponent } from '../app/components/especialidad-list/especialidad-list.component';
+import { EspecialidadFormComponent } from '../app/components/especialidad-form/especialidad-form.component';
+import { PacienteListComponent } from '../app/components/paciente-list/paciente-list.component';
+import { PacienteFormComponent } from '../app/components/paciente-form/paciente-form.component';
+
+/*
 // Sección 3: Citas y Agendas
 import { ConsultorioListComponent } from './features/admin/consultorios/consultorio-list/consultorio-list.component';
 import { ConsultorioFormComponent } from './features/admin/consultorios/consultorio-form/consultorio-form.component';
@@ -58,16 +58,15 @@ export const routes: Routes = [
     { path: 'admin/roles', component: TipoUsuarioListComponent, title: 'Gestión de Roles' },
     { path: 'admin/roles/nuevo', component: TipoUsuarioFormComponent, title: 'Nuevo Rol' },
     { path: 'admin/roles/editar/:id', component: TipoUsuarioFormComponent, title: 'Editar Rol' },
-/*
+
     // Pacientes, Doctores y Recepcionistas
     { path: 'admin/pacientes', component: PacienteListComponent, title: 'Gestión de Pacientes' },
     { path: 'admin/pacientes/nuevo', component: PacienteFormComponent, title: 'Nuevo Paciente' },
     { path: 'admin/pacientes/editar/:id', component: PacienteFormComponent, title: 'Editar Paciente' },
     
-    // Asume que los componentes de Doctor/Recepcionista existen
     // { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
     // { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
-
+/*
     // Infraestructura
     { path: 'admin/consultorios', component: ConsultorioListComponent, title: 'Gestión de Consultorios' },
     { path: 'admin/consultorios/nuevo', component: ConsultorioFormComponent, title: 'Nuevo Consultorio' },
@@ -78,12 +77,12 @@ export const routes: Routes = [
 
     { path: 'admin/asignaciones', component: AsignacionListComponent, title: 'Gestión de Asignaciones' },
     { path: 'admin/asignaciones/nuevo', component: AsignacionFormComponent, title: 'Nueva Asignación' },
-
+*/
     // Catálogos
     { path: 'admin/especialidades', component: EspecialidadListComponent, title: 'Gestión de Especialidades' },
     { path: 'admin/especialidades/nuevo', component: EspecialidadFormComponent, title: 'Nueva Especialidad' },
     { path: 'admin/especialidades/editar/:id', component: EspecialidadFormComponent, title: 'Editar Especialidad' },
-
+/*
     { path: 'admin/medicamentos', component: MedicamentoListComponent, title: 'Catálogo de Medicamentos' },
     { path: 'admin/medicamentos/nuevo', component: MedicamentoFormComponent, title: 'Nuevo Medicamento' },
     { path: 'admin/medicamentos/editar/:id', component: MedicamentoFormComponent, title: 'Editar Medicamento' },
