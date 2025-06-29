@@ -1,0 +1,7 @@
+/* Este estilo empuja el contenido principal hacia la derecha para que no quede debajo del sidebar */
+.content-wrapper {
+  margin-left: 280px; /* Debe ser el mismo ancho que tu sidebar */
+  width: calc(100% - 280px);
+  height: 100vh;
+  overflow-y: auto; /* Permite scroll solo en el area de contenido */
+}

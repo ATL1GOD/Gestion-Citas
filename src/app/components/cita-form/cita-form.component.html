@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="mb-0">Agendar Nueva Cita Médica</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+            
+            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="paciente" class="form-label">Paciente</label>
+                <select id="paciente" class="form-select" formControlName="pacienteId">
+                  <option [ngValue]="null" disabled>Seleccione un paciente...</option>
+                  <option *ngFor="let p of pacientes" [value]="p.id">
+                    {{ p.usuario.nombre }} {{ p.usuario.apellidoPat }} (CURP: {{ p.curp }})
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                 <label for="motivo" class="form-label">Motivo de la Consulta</label>
+                 <input type="text" id="motivo" class="form-control" formControlName="motivo">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="especialidad" class="form-label">Especialidad Requerida</label>
+                <select id="especialidad" class="form-select" formControlName="especialidadId">
+                  <option [ngValue]="null" disabled>1. Seleccione una especialidad...</option>
+                  <option *ngFor="let esp of especialidades" [value]="esp.idEspecialidad">{{ esp.nombre }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="doctor" class="form-label">Doctor</label>
+                <select id="doctor" class="form-select" formControlName="doctorId" [disabled]="!citaForm.get('especialidadId')?.value">
+                  <option [ngValue]="null" disabled>2. Seleccione un doctor...</option>
+                  <option *ngFor="let doc of doctoresFiltrados" [value]="doc.id">
+                    Dr. {{ doc.usuario.nombre }} {{ doc.usuario.apellidoPat }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" id="fecha" class="form-control" formControlName="fecha">
+              </div>
+              <div class="col-md-3">
+                <label for="hora" class="form-label">Hora</label>
+                <input type="time" id="hora" class="form-control" formControlName="hora">
+              </div>
+              <div class="col-md-3">
+                <label for="consultorio" class="form-label">Consultorio</label>
+                <select id="consultorio" class="form-select" formControlName="consultorioId">
+                  <option [ngValue]="null" disabled>Seleccionar...</option>
+                  <option *ngFor="let c of consultorios" [value]="c.id">N° {{ c.numero }} (Piso {{ c.piso }})</option>
+                </select>
+              </div>
+               <div class="col-md-3">
+                <label for="estatus" class="form-label">Estatus Inicial</label>
+                <select id="estatus" class="form-select" formControlName="estatusId">
+                  <option [ngValue]="null" disabled>Seleccionar...</option>
+                  <option *ngFor="let e of estatusLista" [value]="e.idEstado">{{ e.nombre }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+              <a routerLink="/citas" class="btn btn-secondary me-2">Cancelar</a>
+              <button type="submit" class="btn btn-success" [disabled]="citaForm.invalid">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Confirmar Cita
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

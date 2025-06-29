@@ -1,0 +1,64 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Receta } from '../models/receta.model'; // Asegúrate de tener este modelo
+import { RecetaDetalle } from '../models/receta-detalle.model'; // Asegúrate de tener este modelo
+
+// Payload para la creación de la cabecera de la receta
+export interface RecetaCreatePayload {
+  costoConsulta: number;
+  fecha: string; // "YYYY-MM-DD"
+  doctorId: number;
+  pacienteId: number;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RecetaService {
+
+  private recetaApiUrl = '/api/recetas';
+  private detalleApiUrl = '/api/recetas-detalle';
+
+  constructor(private http: HttpClient) { }
+
+  // --- Métodos para Receta (Cabecera) ---
+
+  getAll(): Observable<Receta[]> {
+    return this.http.get<Receta[]>(this.recetaApiUrl);
+  }
+
+  getById(id: number): Observable<Receta> {
+    return this.http.get<Receta>(`${this.recetaApiUrl}/${id}`);
+  }
+
+  getByPacienteId(idPaciente: number): Observable<Receta[]> {
+    return this.http.get<Receta[]>(`${this.recetaApiUrl}/paciente/${idPaciente}`);
+  }
+
+  getByDoctorId(idDoctor: number): Observable<Receta[]> {
+    return this.http.get<Receta[]>(`${this.recetaApiUrl}/doctor/${idDoctor}`);
+  }
+
+  create(payload: RecetaCreatePayload): Observable<Receta> {
+    return this.http.post<Receta>(this.recetaApiUrl, payload);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.recetaApiUrl}/${id}`);
+  }
+
+  // --- Métodos para RecetaDetalle ---
+
+  getDetallesByRecetaId(idReceta: number): Observable<RecetaDetalle[]> {
+    return this.http.get<RecetaDetalle[]>(`${this.detalleApiUrl}/receta/${idReceta}`);
+  }
+
+  addDetalle(detalle: RecetaDetalle): Observable<RecetaDetalle> {
+    return this.http.post<RecetaDetalle>(this.detalleApiUrl, detalle);
+  }
+
+  removeDetalle(idRecetaDetalle: number): Observable<void> {
+    return this.http.delete<void>(`${this.detalleApiUrl}/${idRecetaDetalle}`);
+  }
+}

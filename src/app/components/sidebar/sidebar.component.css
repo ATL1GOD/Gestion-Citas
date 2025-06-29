@@ -1,0 +1,39 @@
+.sidebar-container {
+    width: 280px;
+    height: 100vh; /* Ocupa toda la altura de la vista */
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Scroll si el contenido es muy largo */
+}
+
+/* Estilo para el enlace activo */
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #0d6efd; /* Color primario de Bootstrap */
+}
+
+/* Estilo para los sub-items para que no se vean tan grandes */
+.sub-item {
+    font-size: 0.9rem;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+}
+
+.sub-item.active {
+    font-weight: bold;
+    background-color: transparent !important; /* Evita el fondo azul en subitems */
+    color: #ffffff !important;
+}
+
+.sub-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Rota la flecha del submenú cuando está desplegado */
+a[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+a .bi-chevron-down {
+    transition: transform 0.2s ease-in-out;
+}
