@@ -24,14 +24,14 @@ import { AsignacionFormComponent } from '../app/components/asignacion-form/asign
 import { CitaListComponent } from '../app/components/cita-list/cita-list.component';
 import { CitaFormComponent } from '../app/components/cita-form/cita-form.component';
 
-/*
+
 // Sección 4: Módulo Clínico
-import { MedicamentoListComponent } from './features/admin/medicamentos/medicamento-list/medicamento-list.component';
-import { MedicamentoFormComponent } from './features/admin/medicamentos/medicamento-form/medicamento-form.component';
-import { RecetaListComponent } from './features/recetas/receta-list/receta-list.component';
-import { RecetaFormComponent } from './features/recetas/receta-form/receta-form.component';
-import { RecetaDetailComponent } from './features/recetas/receta-detail/receta-detail.component';
-*/
+import { MedicamentoListComponent } from '../app/components/medicamento-list/medicamento-list.component';
+import { MedicamentoFormComponent } from '../app/components/medicamento-form/medicamento-form.component';
+import { RecetaListComponent } from '../app/components/receta-list/receta-list.component';
+import { RecetaFormComponent } from '../app/components/receta-form/receta-form.component';
+import { RecetaDetailComponent } from '../app/components/receta-detail/receta-detail.component';
+
 // Componente de inicio
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
@@ -45,11 +45,11 @@ export const routes: Routes = [
     { path: 'citas', component: CitaListComponent, title: 'Agenda de Citas' },
     { path: 'citas/nuevo', component: CitaFormComponent, title: 'Agendar Nueva Cita' },
     // { path: 'citas/editar/:id', component: CitaFormComponent, title: 'Editar Cita' }, // Descomentar si implementas la edición
-/*
+
     { path: 'consultas/recetas', component: RecetaListComponent, title: 'Recetas Médicas' },
     { path: 'consultas/recetas/nuevo', component: RecetaFormComponent, title: 'Crear Receta' },
     { path: 'consultas/recetas/detalles/:id', component: RecetaDetailComponent, title: 'Detalles de Receta' },
-    */
+
     // --- Rutas de Administración (prefijo /admin) ---
     // Usuarios y Roles
     { path: 'admin/usuarios', component: UsuarioListComponent, title: 'Gestión de Usuarios' },
@@ -82,11 +82,11 @@ export const routes: Routes = [
     { path: 'admin/especialidades', component: EspecialidadListComponent, title: 'Gestión de Especialidades' },
     { path: 'admin/especialidades/nuevo', component: EspecialidadFormComponent, title: 'Nueva Especialidad' },
     { path: 'admin/especialidades/editar/:id', component: EspecialidadFormComponent, title: 'Editar Especialidad' },
-/*
+
     { path: 'admin/medicamentos', component: MedicamentoListComponent, title: 'Catálogo de Medicamentos' },
     { path: 'admin/medicamentos/nuevo', component: MedicamentoFormComponent, title: 'Nuevo Medicamento' },
     { path: 'admin/medicamentos/editar/:id', component: MedicamentoFormComponent, title: 'Editar Medicamento' },
-*/
+
     // --- Ruta Wildcard para páginas no encontradas ---
     { path: '**', redirectTo: '/dashboard' } // Redirige a dashboard si la ruta no existe
 ];

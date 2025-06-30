@@ -1,4 +1,5 @@
 import { Medicamento } from './medicamento.model';
+import { Receta } from './receta.model';
 
 /**
  * Representa una línea o item dentro de una receta médica.
@@ -9,4 +10,5 @@ export interface RecetaDetalle {
   dosis: string;
   indicaciones: string;
   medicamento: Medicamento;
+  receta: Receta; // Relación con la receta a la que pertenece este detalle
 }

@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="mb-0">{{ isEditMode ? 'Editar Medicamento' : 'Añadir Nuevo Medicamento' }}</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="medicamentoForm" (ngSubmit)="onSubmit()">
+            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre del Medicamento</label>
+              <input type="text" id="nombre" class="form-control" formControlName="nombre">
+            </div>
+
+            <div class="mb-3">
+              <label for="presentacion" class="form-label">Presentación (ej. Caja 20 tabletas 500mg)</label>
+              <input type="text" id="presentacion" class="form-control" formControlName="presentacion">
+            </div>
+
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea id="descripcion" class="form-control" formControlName="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+              <a routerLink="/admin/medicamentos" class="btn btn-secondary me-2">Cancelar</a>
+              <button type="submit" class="btn btn-primary" [disabled]="medicamentoForm.invalid">
+                {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

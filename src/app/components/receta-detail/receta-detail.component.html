@@ -1,0 +1,93 @@
+<div class="container mt-4" *ngIf="receta; else loading">
+  
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h3 class="mb-0">Detalles de la Receta #{{ receta.id }}</h3>
+      <a routerLink="/consultas/recetas" class="btn btn-secondary btn-sm">Volver a la Lista</a>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Paciente:</strong> {{ receta.paciente.usuario.nombre }} {{ receta.paciente.usuario.apellidoPat }}</p>
+          <p><strong>Doctor:</strong> Dr. {{ receta.doctor.usuario.nombre }} {{ receta.doctor.usuario.apellidoPat }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Fecha:</strong> {{ receta.fecha | date:'fullDate' }}</p>
+          <p><strong>Costo Consulta:</strong> {{ receta.costoConsulta | currency:'MXN' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header"><h4 class="mb-0">Medicamentos Recetados</h4></div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Medicamento</th>
+            <th>Dosis</th>
+            <th>Indicaciones</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of receta.recetaDetalles">
+            <td>{{ detalle.medicamento.nombre }} ({{ detalle.medicamento.presentacion }})</td>
+            <td>{{ detalle.dosis }}</td>
+            <td>{{ detalle.indicaciones }}</td>
+            <td class="text-end">
+              <button (click)="eliminarDetalle(detalle.id)" class="btn btn-danger btn-sm">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="receta.recetaDetalles.length === 0">
+            <td colspan="4" class="text-center text-muted">Aún no se han añadido medicamentos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header"><h4 class="mb-0">Añadir Medicamento a la Receta</h4></div>
+    <div class="card-body">
+      <form [formGroup]="addMedicamentoForm" (ngSubmit)="agregarMedicamento()" class="row g-3 align-items-end">
+        
+        <div class="col-md-4">
+          <label for="medicamento" class="form-label">Medicamento</label>
+          <select id="medicamento" class="form-select" formControlName="medicamento">
+            <option [ngValue]="null" disabled>Seleccionar...</option>
+            <option *ngFor="let med of medicamentosCatalogo" [ngValue]="med">{{ med.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <label for="dosis" class="form-label">Dosis</label>
+          <input type="text" id="dosis" class="form-control" formControlName="dosis">
+        </div>
+
+        <div class="col-md-4">
+          <label for="indicaciones" class="form-label">Indicaciones</label>
+          <input type="text" id="indicaciones" class="form-control" formControlName="indicaciones">
+        </div>
+
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-success w-100" [disabled]="addMedicamentoForm.invalid">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <div class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+</ng-template>
