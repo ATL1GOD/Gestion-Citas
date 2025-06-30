@@ -23,30 +23,48 @@
         </thead>
         <tbody>
           <tr *ngFor="let consultorio of consultorios">
-            <td><strong>{{ consultorio.id }}</strong></td>
+            <td>
+              <strong>{{ consultorio.id }}</strong>
+            </td>
             <td>{{ consultorio.numero }}</td>
             <td>{{ consultorio.piso }}</td>
             <td>{{ consultorio.descripcion }}</td>
             <td>
-              <span class="badge" [ngClass]="{
-                'bg-success': consultorio.estatus.nombre === 'Disponible',
-                'bg-warning text-dark': consultorio.estatus.nombre === 'Ocupado',
-                'bg-danger': consultorio.estatus.nombre === 'Mantenimiento'
-              }">
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-info text-dark':
+                    consultorio.estatus.nombre === 'Disponible',
+                  'bg-warning text-dark':
+                    consultorio.estatus.nombre === 'Desocupado',
+                  'bg-danger text-white':
+                    consultorio.estatus.nombre === 'Mantenimiento'
+                }"
+              >
                 {{ consultorio.estatus.nombre }}
               </span>
             </td>
             <td class="text-end">
-              <a [routerLink]="['/admin/consultorios/editar', consultorio.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+              <a
+                [routerLink]="['/admin/consultorios/editar', consultorio.id]"
+                class="btn btn-sm btn-warning me-2"
+                title="Editar"
+              >
                 <i class="bi bi-pencil-fill"></i>
               </a>
-              <button (click)="eliminarConsultorio(consultorio.id)" class="btn btn-sm btn-danger" title="Eliminar">
+              <button
+                (click)="eliminarConsultorio(consultorio.id)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="consultorios.length === 0 && !error">
-            <td colspan="6" class="text-center text-muted">No hay consultorios para mostrar.</td>
+            <td colspan="6" class="text-center text-muted">
+              No hay consultorios para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>
