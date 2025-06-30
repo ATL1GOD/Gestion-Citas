@@ -36,7 +36,7 @@
                   <option [ngValue]="null" disabled>
                     2. Seleccione la cita...
                   </option>
-                  <option *ngFor="let c of citas" [value]="c.id">
+                  <option *ngFor="let c of citas" [value]="c.idCita">
                     {{ c.fecha | date : "dd/MM/yyyy" }} - {{ c.motivo }} (Dr.
                     {{ c.doctor.usuario.apellidoPat }})
                   </option>

@@ -89,7 +89,7 @@ export class HistorialFormComponent implements OnInit {
 
     // El doctorId se obtiene de la cita seleccionada
     const citaSeleccionada = this.citas.find(
-      (c) => c.id == this.historialForm.get('citaId')?.value
+      (c) => c.idCita == this.historialForm.get('citaId')?.value
     );
     if (!citaSeleccionada) {
       this.error = 'Por favor, seleccione una cita válida.';

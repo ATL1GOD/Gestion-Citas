@@ -11,14 +11,13 @@ import { Paciente } from './paciente.model'; // Asumiendo que tienes este modelo
  * Archivo de origen: CitaConsultaController.java
  */
 export interface CitaConsulta {
-  id: number;
-  fecha: string;        // Formato "YYYY-MM-DD"
-  hora: string;         // Formato "HH:mm:ss"
-  motivo: string;       //
+  idCita: number;
+  fecha: string; // Formato "YYYY-MM-DD"
+  hora: string; // Formato "HH:mm:ss"
+  motivo: string; //
   paciente: Paciente;
   doctor: Doctor;
   consultorio: Consultorio;
-  especialidad: Especialidad;
   estatus: Estatus;
 }
 
@@ -28,12 +27,11 @@ export interface CitaConsulta {
  * Archivo de origen: CitaConsultaController.java
  */
 export interface CitaConsultaCreatePayload {
-  fecha: string;      // "YYYY-MM-DD"
-  hora: string;       // "HH:mm"
+  fecha: string; // "YYYY-MM-DD"
+  hora: string; // "HH:mm"
   motivo: string;
   pacienteId: number;
   doctorId: number;
   consultorioId: number;
-  especialidadId: number;
   estatusId: number;
 }
