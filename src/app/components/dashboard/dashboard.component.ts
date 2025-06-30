@@ -7,53 +7,53 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="container-fluid">
-      <h1 class="mt-4">Dashboard</h1>
-      <p class="lead mb-4">Bienvenido al Sistema de Gestión de la Clínica Salud.</p>
-      
-      <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-primary shadow h-100 py-2">
+    <div class="container-fluid p-4">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Panel de Control</h1>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-lg-7">
+          <div class="card shadow h-100">
             <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs fw-bold text-primary text-uppercase mb-1">Agendar Cita</div>
-                  <div class="h5 mb-0 fw-bold text-gray-800">Nueva Consulta</div>
-                </div>
-                <div class="col-auto">
-                  <i class="bi bi-calendar-plus-fill fs-2 text-gray-300"></i>
-                </div>
-              </div>
-              <a routerLink="/citas/nuevo" class="stretched-link"></a>
+              <h2 class="card-title">¡Bienvenido al Sistema!</h2>
+              <p class="lead">
+                Sistema de Gestión de la Clínica Salud. Desde aquí puede
+                administrar citas, pacientes y mucho más.
+              </p>
+              <p>
+                Revisa lass citas de hoy y accede a los módulos de agendamiento
+                y clínico para gestionar la información.
+              </p>
+              <a routerLink="/citas" class="btn btn-info">Ver Citas de Hoy</a>
             </div>
           </div>
         </div>
-
-        <div class="col-xl-3 col-md-6 mb-4">
-          <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                  <div class="text-xs fw-bold text-success text-uppercase mb-1">Ver Pacientes</div>
-                  <div class="h5 mb-0 fw-bold text-gray-800">Administrar</div>
-                </div>
-                <div class="col-auto">
-                  <i class="bi bi-people-fill fs-2 text-gray-300"></i>
-                </div>
-              </div>
-              <a routerLink="/admin/pacientes" class="stretched-link"></a>
-            </div>
+        <div class="col-lg-5 d-none d-lg-block">
+          <div class="card shadow h-100">
+            <img
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop"
+              class="img-fluid h-100"
+              style="object-fit: cover; border-radius: 0.35rem;"
+              alt="Personal médico usando una tablet"
+            />
           </div>
         </div>
       </div>
     </div>
   `,
-  styles: [`
-    .card .border-left-primary { border-left: .25rem solid #4e73df !important; }
-    .card .border-left-success { border-left: .25rem solid #1cc88a !important; }
-    .text-gray-300 { color: #dddfeb !important; }
-  `]
+  styles: [
+    `
+      .card .border-left-primary {
+        border-left: 0.25rem solid #4e73df !important;
+      }
+      .card .border-left-success {
+        border-left: 0.25rem solid #1cc88a !important;
+      }
+      .text-gray-300 {
+        color: #dddfeb !important;
+      }
+    `,
+  ],
 })
-export class DashboardComponent {
-
-}
+export class DashboardComponent {}

@@ -1,3 +1,5 @@
+// src/app/models/receta-detalle.model.ts
+
 import { Medicamento } from './medicamento.model';
 import { Receta } from './receta.model';
 import { Paciente } from './paciente.model';
@@ -10,8 +12,10 @@ import { HistorialClinico } from './historial-clinico.model';
  */
 export interface RecetaDetalle {
   idRecetaDetalle: number;
-  receta: number; // ID de la receta a la que pertenece este detalle
+  receta: Receta; // Cambiado para reflejar el objeto completo
   dosificacion: string;
+  // El backend devuelve el nombre del medicamento como string en la consulta de receta.
+  // Dejamos esto como estaba, pero el payload de creación será diferente.
   medicamento: String;
   instrucciones: String;
   cantidad: number;

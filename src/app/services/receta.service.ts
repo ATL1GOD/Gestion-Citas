@@ -1,3 +1,5 @@
+// src/app/services/receta.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -14,14 +16,13 @@ export interface RecetaCreatePayload {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecetaService {
-
   private recetaApiUrl = `${environment.apiUrl}/recetas`;
   private detalleApiUrl = `${environment.apiUrl}/recetas-detalle`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // --- Métodos para Receta (Cabecera) ---
 
@@ -34,7 +35,9 @@ export class RecetaService {
   }
 
   getByPacienteId(idPaciente: number): Observable<Receta[]> {
-    return this.http.get<Receta[]>(`${this.recetaApiUrl}/paciente/${idPaciente}`);
+    return this.http.get<Receta[]>(
+      `${this.recetaApiUrl}/paciente/${idPaciente}`
+    );
   }
 
   getByDoctorId(idDoctor: number): Observable<Receta[]> {
@@ -52,10 +55,16 @@ export class RecetaService {
   // --- Métodos para RecetaDetalle ---
 
   getDetallesByRecetaId(idReceta: number): Observable<RecetaDetalle[]> {
-    return this.http.get<RecetaDetalle[]>(`${this.detalleApiUrl}/receta/${idReceta}`);
+    return this.http.get<RecetaDetalle[]>(
+      `${this.detalleApiUrl}/receta/${idReceta}`
+    );
   }
 
-  addDetalle(detalle: RecetaDetalle): Observable<RecetaDetalle> {
+  /**
+   * Se ha cambiado el tipo de 'detalle' a 'any' para permitir un payload de creación
+   * que no coincide exactamente con el modelo RecetaDetalle.
+   */
+  addDetalle(detalle: any): Observable<RecetaDetalle> {
     return this.http.post<RecetaDetalle>(this.detalleApiUrl, detalle);
   }
 

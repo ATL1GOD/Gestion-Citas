@@ -1,3 +1,5 @@
+// src/app/components/receta-detail/receta-detail.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import {
@@ -38,6 +40,7 @@ export class RecetaDetailComponent implements OnInit {
     this.recetaId = +this.route.snapshot.paramMap.get('id')!;
 
     this.addMedicamentoForm = this.fb.group({
+      // El valor del medicamento será el objeto Medicamento completo gracias a [ngValue]
       medicamento: [null, Validators.required],
       dosis: ['', Validators.required],
       indicaciones: ['', Validators.required],
@@ -67,19 +70,27 @@ export class RecetaDetailComponent implements OnInit {
     }
 
     const formValue = this.addMedicamentoForm.value;
-    const nuevoDetalle: Partial<RecetaDetalle> = {
-      idRecetaDetalle: this.recetaId,
-      medicamento: formValue.medicamento,
+
+    // *** INICIO DE LA CORRECCIÓN ***
+    // Construir el payload EXACTAMENTE como lo espera el backend.
+    const nuevoDetallePayload = {
       dosificacion: formValue.dosis,
       instrucciones: formValue.indicaciones,
+      cantidad: 1, // Se añade el campo 'cantidad' que faltaba. Lo ponemos en 1 por defecto.
+      receta: { idReceta: this.recetaId }, // Objeto anidado para la receta
+      medicamento: { idMedicamento: formValue.medicamento.idMedicamento }, // Objeto anidado para el medicamento
     };
+    // *** FIN DE LA CORRECCIÓN ***
 
-    this.recetaService.addDetalle(nuevoDetalle as RecetaDetalle).subscribe({
+    this.recetaService.addDetalle(nuevoDetallePayload).subscribe({
       next: () => {
-        this.cargarReceta(); // Recargar los detalles de la receta
+        this.cargarReceta(); // Recargar los detalles de la receta para ver el nuevo item
         this.addMedicamentoForm.reset();
+        this.error = null; // Limpiar errores previos
       },
-      error: (_err) => (this.error = 'Error al añadir el medicamento.'),
+      error: (_err) =>
+        (this.error =
+          'Error al añadir el medicamento. Verifique los datos e intente de nuevo.'),
     });
   }
 
