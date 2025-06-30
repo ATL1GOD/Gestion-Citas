@@ -13,7 +13,10 @@ import { EspecialidadListComponent } from '../app/components/especialidad-list/e
 import { EspecialidadFormComponent } from '../app/components/especialidad-form/especialidad-form.component';
 import { PacienteListComponent } from '../app/components/paciente-list/paciente-list.component';
 import { PacienteFormComponent } from '../app/components/paciente-form/paciente-form.component';
-
+import { DoctorListComponent } from '../app/components/doctor-list/doctor-list.component';
+import { DoctorFormComponent } from '../app/components/doctor-form/doctor-form.component';
+import { RecepcionistaListComponent } from '../app/components/recepcionista-list/recepcionista-list.component';
+import { RecepcionistaFormComponent } from '../app/components/recepcionista-form/recepcionista-form.component';
 
 // Sección 3: Citas y Agendas
 import { ConsultorioListComponent } from '../app/components/consultorio-list/consultorio-list.component';
@@ -25,14 +28,12 @@ import { AsignacionFormComponent } from '../app/components/asignacion-form/asign
 import { CitaListComponent } from '../app/components/cita-list/cita-list.component';
 import { CitaFormComponent } from '../app/components/cita-form/cita-form.component';
 
-
 // Sección 4: Módulo Clínico
 import { MedicamentoListComponent } from '../app/components/medicamento-list/medicamento-list.component';
 import { MedicamentoFormComponent } from '../app/components/medicamento-form/medicamento-form.component';
 import { RecetaListComponent } from '../app/components/receta-list/receta-list.component';
 import { RecetaFormComponent } from '../app/components/receta-form/receta-form.component';
 import { RecetaDetailComponent } from '../app/components/receta-detail/receta-detail.component';
-
 import { HistorialListComponent } from '../app/components/historial-list/historial-list.component';
 import { HistorialFormComponent } from '../app/components/historial-form/historial-form.component';
 import { HistorialDetailComponent } from '../app/components/historial-detail/historial-detail.component';
@@ -72,9 +73,12 @@ export const routes: Routes = [
     { path: 'admin/pacientes', component: PacienteListComponent, title: 'Gestión de Pacientes' },
     { path: 'admin/pacientes/nuevo', component: PacienteFormComponent, title: 'Nuevo Paciente' },
     { path: 'admin/pacientes/editar/:id', component: PacienteFormComponent, title: 'Editar Paciente' },
-   // { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
-   // { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
-
+    { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
+    { path: 'admin/doctores/nuevo', component: DoctorFormComponent, title: 'Nuevo Doctor' },
+    { path: 'admin/doctores/editar/:id', component: DoctorFormComponent, title: 'Editar Doctor' },
+    { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
+    { path: 'admin/recepcionistas/nuevo', component: RecepcionistaFormComponent, title: 'Nuevo Recepcionista' },
+    { path: 'admin/recepcionistas/editar/:id', component: RecepcionistaFormComponent, title: 'Editar Recepcionista' },
     // Infraestructura
     { path: 'admin/consultorios', component: ConsultorioListComponent, title: 'Gestión de Consultorios' },
     { path: 'admin/consultorios/nuevo', component: ConsultorioFormComponent, title: 'Nuevo Consultorio' },

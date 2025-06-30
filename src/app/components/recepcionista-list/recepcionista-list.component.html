@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Gestión de Recepcionistas</h2>
+    <a routerLink="/admin/recepcionistas/nuevo" class="btn btn-primary">
+      <i class="bi bi-person-plus-fill me-2"></i>Registrar Nuevo Recepcionista
+    </a>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Nombre Completo</th>
+              <th>Email</th>
+              <th>Consultorio Asignado</th>
+              <th>Horario</th>
+              <th class="text-end">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rec of recepcionistas">
+              <td>{{ rec.usuario.nombre }} {{ rec.usuario.apellidoPat }}</td>
+              <td>{{ rec.usuario.email }}</td>
+              <td>N° {{ rec.consultorio.numero }} (Piso {{ rec.consultorio.piso }})</td>
+              <td>{{ rec.horario.horaInicio }} - {{ rec.horario.horaFin }}</td>
+              <td class="text-end">
+                 <a [routerLink]="['/admin/recepcionistas/editar', rec.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+                <button (click)="eliminarRecepcionista(rec.id)" class="btn btn-sm btn-danger" title="Eliminar">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="recepcionistas.length === 0 && !error">
+              <td colspan="5" class="text-center text-muted">No hay recepcionistas registrados.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
