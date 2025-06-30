@@ -24,7 +24,7 @@
         <tbody>
           <tr *ngFor="let consultorio of consultorios">
             <td>
-              <strong>{{ consultorio.id }}</strong>
+              <strong>{{ consultorio.idConsultorio }}</strong>
             </td>
             <td>{{ consultorio.numero }}</td>
             <td>{{ consultorio.piso }}</td>
@@ -46,14 +46,17 @@
             </td>
             <td class="text-end">
               <a
-                [routerLink]="['/admin/consultorios/editar', consultorio.id]"
+                [routerLink]="[
+                  '/admin/consultorios/editar',
+                  consultorio.idConsultorio
+                ]"
                 class="btn btn-sm btn-warning me-2"
                 title="Editar"
               >
                 <i class="bi bi-pencil-fill"></i>
               </a>
               <button
-                (click)="eliminarConsultorio(consultorio.id)"
+                (click)="eliminarConsultorio(consultorio.idConsultorio)"
                 class="btn btn-sm btn-danger"
                 title="Eliminar"
               >

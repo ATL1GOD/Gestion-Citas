@@ -21,23 +21,37 @@
         </thead>
         <tbody>
           <tr *ngFor="let horario of horarios">
-            <td><strong>{{ horario.id }}</strong></td>
             <td>
-              <span *ngIf="horario.horario" class="badge bg-info">Hora Única</span>
-              <span *ngIf="horario.horaInicio" class="badge bg-primary">Rango</span>
+              <strong>{{ horario.idHorario }}</strong>
+            </td>
+            <td>
+              <span *ngIf="horario.horario" class="badge bg-info"
+                >Hora Única</span
+              >
+              <span *ngIf="horario.horaInicio" class="badge bg-primary"
+                >Rango</span
+              >
             </td>
             <td>
               <span *ngIf="horario.horario">{{ horario.horario }}</span>
-              <span *ngIf="horario.horaInicio">De {{ horario.horaInicio }} a {{ horario.horaFin }}</span>
+              <span *ngIf="horario.horaInicio"
+                >De {{ horario.horaInicio }} a {{ horario.horaFin }}</span
+              >
             </td>
             <td class="text-end">
-              <button (click)="eliminarHorario(horario.id)" class="btn btn-sm btn-danger" title="Eliminar">
+              <button
+                (click)="eliminarHorario(horario.idHorario)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="horarios.length === 0 && !error">
-            <td colspan="4" class="text-center text-muted">No hay horarios para mostrar.</td>
+            <td colspan="4" class="text-center text-muted">
+              No hay horarios para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>

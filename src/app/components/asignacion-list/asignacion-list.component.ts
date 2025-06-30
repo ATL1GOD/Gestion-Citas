@@ -39,7 +39,7 @@ export class AsignacionListComponent implements OnInit {
       )
     ) {
       this.asignacionService
-        .delete(doctor.idDoctor, consultorio.id, horario.id)
+        .delete(doctor.idDoctor, consultorio.idConsultorio, horario.idHorario)
         .subscribe({
           next: () => this.cargarAsignaciones(),
           error: (err) => (this.error = 'Error al eliminar la asignación.'),

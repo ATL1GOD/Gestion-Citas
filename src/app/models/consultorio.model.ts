@@ -6,7 +6,7 @@ import { Estatus } from './estatus.model';
  * Archivo de origen: ConsultorioController.java
  */
 export interface Consultorio {
-  id: number;
+  idConsultorio: number;
   numero: string;
   piso: string;
   descripcion: string;

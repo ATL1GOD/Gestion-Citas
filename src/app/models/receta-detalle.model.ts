@@ -6,7 +6,7 @@ import { Receta } from './receta.model';
  * Indica qué medicamento, en qué dosis y con qué indicaciones.
  */
 export interface RecetaDetalle {
-  id: number;
+  idRecetaDetalle: number;
   dosis: string;
   indicaciones: string;
   medicamento: Medicamento;

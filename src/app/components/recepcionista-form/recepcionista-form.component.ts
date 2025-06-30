@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RecepcionistaService, RecepcionistaCreatePayload } from '../../services/recepcionista.service';
+import {
+  RecepcionistaService,
+  RecepcionistaCreatePayload,
+} from '../../services/recepcionista.service';
 import { HorarioService } from '../../services/horario.service';
 import { ConsultorioService } from '../../services/consultorio.service';
 import { Horario } from '../../models/horario.model';
@@ -13,10 +21,9 @@ import { Consultorio } from '../../models/consultorio.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './recepcionista-form.component.html',
-  styleUrl: './recepcionista-form.component.css'
+  styleUrl: './recepcionista-form.component.css',
 })
 export class RecepcionistaFormComponent implements OnInit {
-  
   recepcionistaForm!: FormGroup;
   isEditMode = false;
   recepcionistaId: number | null = null;
@@ -30,7 +37,7 @@ export class RecepcionistaFormComponent implements OnInit {
     private router: Router,
     private recepcionistaService: RecepcionistaService,
     private horarioService: HorarioService,
-    private consultorioService: ConsultorioService,
+    private consultorioService: ConsultorioService
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +51,7 @@ export class RecepcionistaFormComponent implements OnInit {
       horarioId: [null, Validators.required],
       consultorioId: [null, Validators.required],
     });
-    
+
     this.cargarDatosDeApoyo();
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -54,15 +61,19 @@ export class RecepcionistaFormComponent implements OnInit {
       this.recepcionistaForm.get('contrasena')?.setValidators(null);
       this.cargarDatosRecepcionista(this.recepcionistaId);
     } else {
-       this.recepcionistaForm.get('contrasena')?.setValidators([Validators.required, Validators.minLength(6)]);
+      this.recepcionistaForm
+        .get('contrasena')
+        ?.setValidators([Validators.required, Validators.minLength(6)]);
     }
   }
-  
+
   cargarDatosDeApoyo(): void {
-    this.consultorioService.getAll().subscribe(data => this.consultorios = data);
-    this.horarioService.getAll().subscribe(data => {
+    this.consultorioService
+      .getAll()
+      .subscribe((data) => (this.consultorios = data));
+    this.horarioService.getAll().subscribe((data) => {
       // Filtramos para obtener solo horarios de tipo "rango" para los turnos
-      this.horarios = data.filter(h => h.horaInicio && h.horaFin);
+      this.horarios = data.filter((h) => h.horaInicio && h.horaFin);
     });
   }
 
@@ -75,11 +86,12 @@ export class RecepcionistaFormComponent implements OnInit {
           apellidoMat: data.usuario.apellidoMat,
           email: data.usuario.email,
           telefono: data.usuario.telefono,
-          horarioId: data.horario.id,
-          consultorioId: data.consultorio.id,
+          horarioId: data.horario.idHorario,
+          consultorioId: data.consultorio.idConsultorio,
         });
       },
-      error: (err) => this.error = "No se pudo cargar la información del recepcionista."
+      error: (err) =>
+        (this.error = 'No se pudo cargar la información del recepcionista.'),
     });
   }
 
@@ -88,22 +100,26 @@ export class RecepcionistaFormComponent implements OnInit {
       this.recepcionistaForm.markAllAsTouched();
       return;
     }
-    
+
     // El backend espera un payload específico (un Map), por lo que lo construimos.
-    const payload: RecepcionistaCreatePayload | any = this.recepcionistaForm.value;
+    const payload: RecepcionistaCreatePayload | any =
+      this.recepcionistaForm.value;
 
     if (this.isEditMode) {
-        if (!payload.contrasena) delete payload.contrasena; // No enviar contraseña si está vacía
-        
-        this.recepcionistaService.update(this.recepcionistaId!, payload).subscribe({
-            next: () => this.router.navigate(['/admin/recepcionistas']),
-            error: (err) => this.error = "Error al actualizar el recepcionista."
+      if (!payload.contrasena) delete payload.contrasena; // No enviar contraseña si está vacía
+
+      this.recepcionistaService
+        .update(this.recepcionistaId!, payload)
+        .subscribe({
+          next: () => this.router.navigate(['/admin/recepcionistas']),
+          error: (err) =>
+            (this.error = 'Error al actualizar el recepcionista.'),
         });
     } else {
-        this.recepcionistaService.create(payload).subscribe({
-            next: () => this.router.navigate(['/admin/recepcionistas']),
-            error: (err) => this.error = "Error al crear el recepcionista."
-        });
+      this.recepcionistaService.create(payload).subscribe({
+        next: () => this.router.navigate(['/admin/recepcionistas']),
+        error: (err) => (this.error = 'Error al crear el recepcionista.'),
+      });
     }
   }
 }

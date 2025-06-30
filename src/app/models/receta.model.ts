@@ -7,7 +7,7 @@ import { RecetaDetalle } from './receta-detalle.model';
  * Contiene una lista de detalles (RecetaDetalle).
  */
 export interface Receta {
-  id: number;
+  idReceta: number;
   costoConsulta: number;
   fecha: string; // Formato "YYYY-MM-DD" o "YYYY-MM-DD'T'HH:mm:ss"
   doctor: Doctor;
@@ -19,8 +19,8 @@ export interface Receta {
  * Payload para crear una nueva receta, usando solo los IDs.
  */
 export interface RecetaCreatePayload {
-    costoConsulta: number;
-    fecha: string; // "YYYY-MM-DD"
-    doctorId: number;
-    pacienteId: number;
+  costoConsulta: number;
+  fecha: string; // "YYYY-MM-DD"
+  doctorId: number;
+  pacienteId: number;
 }

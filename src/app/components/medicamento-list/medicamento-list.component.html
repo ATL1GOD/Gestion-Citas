@@ -8,7 +8,12 @@
 
   <div class="row mb-3">
     <div class="col-md-6">
-      <input type="text" class="form-control" placeholder="Buscar medicamento por nombre..." [formControl]="searchControl">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Buscar medicamento por nombre..."
+        [formControl]="searchControl"
+      />
     </div>
   </div>
 
@@ -28,21 +33,33 @@
         </thead>
         <tbody>
           <tr *ngFor="let med of medicamentos">
-            <td><strong>{{ med.id }}</strong></td>
+            <td>
+              <strong>{{ med.idMedicamento }}</strong>
+            </td>
             <td>{{ med.nombre }}</td>
             <td>{{ med.presentacion }}</td>
             <td>{{ med.descripcion }}</td>
             <td class="text-end">
-              <a [routerLink]="['/admin/medicamentos/editar', med.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+              <a
+                [routerLink]="['/admin/medicamentos/editar', med.idMedicamento]"
+                class="btn btn-sm btn-warning me-2"
+                title="Editar"
+              >
                 <i class="bi bi-pencil-fill"></i>
               </a>
-              <button (click)="eliminarMedicamento(med.id)" class="btn btn-sm btn-danger" title="Eliminar">
+              <button
+                (click)="eliminarMedicamento(med.idMedicamento)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="medicamentos.length === 0 && !error">
-            <td colspan="5" class="text-center text-muted">No hay medicamentos para mostrar.</td>
+            <td colspan="5" class="text-center text-muted">
+              No hay medicamentos para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>

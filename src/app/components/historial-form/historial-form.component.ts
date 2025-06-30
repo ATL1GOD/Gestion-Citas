@@ -104,7 +104,10 @@ export class HistorialFormComponent implements OnInit {
     this.historialService.create(payload).subscribe({
       next: (nuevoHistorial) => {
         // Redirigir a la vista de detalle del nuevo historial
-        this.router.navigate(['/consultas/historiales', nuevoHistorial.id]);
+        this.router.navigate([
+          '/consultas/historiales',
+          nuevoHistorial.idHistorial,
+        ]);
       },
       error: (err) => (this.error = 'Error al crear el registro clínico.'),
     });

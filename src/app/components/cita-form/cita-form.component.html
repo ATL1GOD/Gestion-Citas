@@ -108,7 +108,10 @@
                   formControlName="consultorioId"
                 >
                   <option [ngValue]="null" disabled>Seleccionar...</option>
-                  <option *ngFor="let c of consultorios" [value]="c.id">
+                  <option
+                    *ngFor="let c of consultorios"
+                    [value]="c.idConsultorio"
+                  >
                     N° {{ c.numero }} (Piso {{ c.piso }})
                   </option>
                 </select>

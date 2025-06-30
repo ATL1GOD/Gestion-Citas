@@ -37,7 +37,10 @@
                 <option [ngValue]="null" disabled>
                   Seleccione un consultorio...
                 </option>
-                <option *ngFor="let cons of consultorios" [value]="cons.id">
+                <option
+                  *ngFor="let cons of consultorios"
+                  [value]="cons.idConsultorio"
+                >
                   N° {{ cons.numero }} (Piso {{ cons.piso }})
                 </option>
               </select>
@@ -53,7 +56,7 @@
                 <option [ngValue]="null" disabled>
                   Seleccione un horario...
                 </option>
-                <option *ngFor="let hor of horarios" [value]="hor.id">
+                <option *ngFor="let hor of horarios" [value]="hor.idHorario">
                   {{ hor.horaInicio }} - {{ hor.horaFin }}
                 </option>
               </select>
