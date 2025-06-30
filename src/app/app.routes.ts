@@ -38,7 +38,10 @@ import { HistorialListComponent } from '../app/components/historial-list/histori
 import { HistorialFormComponent } from '../app/components/historial-form/historial-form.component';
 import { HistorialDetailComponent } from '../app/components/historial-detail/historial-detail.component';
 
-// Sección 5: Dashboard y Componente Principal
+// Sección 5: Reportes 
+import { ReporteComponent } from '../app/components/reporte/reporte.component';
+
+// Sección 6: Dashboard y Componente Principal
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
@@ -79,6 +82,7 @@ export const routes: Routes = [
     { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
     { path: 'admin/recepcionistas/nuevo', component: RecepcionistaFormComponent, title: 'Nuevo Recepcionista' },
     { path: 'admin/recepcionistas/editar/:id', component: RecepcionistaFormComponent, title: 'Editar Recepcionista' },
+    
     // Infraestructura
     { path: 'admin/consultorios', component: ConsultorioListComponent, title: 'Gestión de Consultorios' },
     { path: 'admin/consultorios/nuevo', component: ConsultorioFormComponent, title: 'Nuevo Consultorio' },
@@ -99,6 +103,8 @@ export const routes: Routes = [
     { path: 'admin/medicamentos/nuevo', component: MedicamentoFormComponent, title: 'Nuevo Medicamento' },
     { path: 'admin/medicamentos/editar/:id', component: MedicamentoFormComponent, title: 'Editar Medicamento' },
 
+    // --- Rutas de Reportes ---
+    {path: 'reportes', component: ReporteComponent, title: 'Generación de Reportes'},
     // --- Ruta Wildcard para páginas no encontradas ---
     { path: '**', redirectTo: '/dashboard' } // Redirige a dashboard si la ruta no existe
 ];
