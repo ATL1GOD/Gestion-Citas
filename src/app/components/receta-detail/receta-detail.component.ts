@@ -68,10 +68,10 @@ export class RecetaDetailComponent implements OnInit {
 
     const formValue = this.addMedicamentoForm.value;
     const nuevoDetalle: Partial<RecetaDetalle> = {
-      receta: { idReceta: this.recetaId } as Receta,
+      idRecetaDetalle: this.recetaId,
       medicamento: formValue.medicamento,
-      dosis: formValue.dosis,
-      indicaciones: formValue.indicaciones,
+      dosificacion: formValue.dosis,
+      instrucciones: formValue.indicaciones,
     };
 
     this.recetaService.addDetalle(nuevoDetalle as RecetaDetalle).subscribe({
@@ -79,7 +79,7 @@ export class RecetaDetailComponent implements OnInit {
         this.cargarReceta(); // Recargar los detalles de la receta
         this.addMedicamentoForm.reset();
       },
-      error: (err) => (this.error = 'Error al añadir el medicamento.'),
+      error: (_err) => (this.error = 'Error al añadir el medicamento.'),
     });
   }
 

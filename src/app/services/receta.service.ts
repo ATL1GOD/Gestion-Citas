@@ -18,8 +18,8 @@ export interface RecetaCreatePayload {
 })
 export class RecetaService {
 
-  private recetaApiUrl = `${environment.apiUrl}/api/recetas`;
-  private detalleApiUrl = `${environment.apiUrl}/api/recetas-detalle`;
+  private recetaApiUrl = `${environment.apiUrl}/recetas`;
+  private detalleApiUrl = `${environment.apiUrl}/recetas-detalle`;
 
   constructor(private http: HttpClient) { }
 

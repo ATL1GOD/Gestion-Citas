@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class HorarioService {
 
-  private apiUrl = `${environment.apiUrl}/api/horarios`; // URL base del HorarioController
+  private apiUrl = `${environment.apiUrl}/horarios`; // URL base del HorarioController
 
   constructor(private http: HttpClient) { }
 

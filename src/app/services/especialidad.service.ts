@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class EspecialidadService {
 
-  private apiUrl = `${environment.apiUrl}/api/especialidades`; // URL base del EspecialidadController
+  private apiUrl = `${environment.apiUrl}/especialidades`; // URL base del EspecialidadController
 
   constructor(private http: HttpClient) { }
 

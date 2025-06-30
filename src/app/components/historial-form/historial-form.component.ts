@@ -57,23 +57,19 @@ export class HistorialFormComponent implements OnInit {
     this.cargarDatosIniciales();
 
     // Cargar citas del paciente cuando se seleccione uno
-    this.historialForm
-      .get('pacienteId')
-      ?.valueChanges.subscribe((pacienteId) => {
-        this.historialForm.get('citaId')?.reset();
-        this.historialForm.get('doctorId')?.reset(); // Asumimos que la cita define al doctor
-        if (pacienteId) {
-          // En un caso real, aquí se llamarían las citas solo de ese paciente.
-          // Por simplicidad del ejemplo, filtramos de una lista completa.
-          this.citaService.getAll().subscribe((todasLasCitas) => {
-            this.citas = todasLasCitas.filter(
-              (c) => c.paciente.idPaciente == pacienteId
-            );
-          });
-        } else {
-          this.citas = [];
-        }
-      });
+    this.historialForm.get('pacienteId')?.valueChanges.subscribe(pacienteId => {
+      this.historialForm.get('citaId')?.reset();
+      this.historialForm.get('doctorId')?.reset(); // Asumimos que la cita define al doctor
+      if (pacienteId) {
+        // En un caso real, aquí se llamarían las citas solo de ese paciente.
+        // Por simplicidad del ejemplo, filtramos de una lista completa.
+        this.citaService.getAll().subscribe(todasLasCitas => {
+            this.citas = todasLasCitas.filter(c => c.paciente.curp == pacienteId);
+        });
+      } else {
+        this.citas = [];
+      }
+    });
   }
 
   cargarDatosIniciales(): void {
@@ -88,9 +84,7 @@ export class HistorialFormComponent implements OnInit {
     }
 
     // El doctorId se obtiene de la cita seleccionada
-    const citaSeleccionada = this.citas.find(
-      (c) => c.idCita == this.historialForm.get('citaId')?.value
-    );
+    const citaSeleccionada = this.citas.find(c => c.idCita == this.historialForm.get('citaId')?.value);
     if (!citaSeleccionada) {
       this.error = 'Por favor, seleccione una cita válida.';
       return;
@@ -98,7 +92,7 @@ export class HistorialFormComponent implements OnInit {
 
     const payload: HistorialCreatePayload = {
       ...this.historialForm.value,
-      doctorId: citaSeleccionada.doctor.idDoctor,
+      doctorId: citaSeleccionada.doctor.noCedula
     };
 
     this.historialService.create(payload).subscribe({

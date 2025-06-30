@@ -29,12 +29,14 @@
               style="cursor: pointer"
             >
               <td>
-                {{ historial.paciente.usuario.nombre }}
-                {{ historial.paciente.usuario.apellidoPat }}
+                {{ historial.paciente.nombre }}
+                {{ historial.paciente.apellidoPat }}
+                {{ historial.paciente.apellidoMat }}
               </td>
               <td>
-                Dr. {{ historial.doctor.usuario.nombre }}
-                {{ historial.doctor.usuario.apellidoPat }}
+                Dr. {{ historial.doctor.nombre }}
+                {{ historial.doctor.apellidoPat }}
+                {{ historial.doctor.apellidoMat }}
               </td>
               <td>{{ historial.fechaDiagnostico | date : "dd/MM/yyyy" }}</td>
               <td>{{ historial.diagnostico }}</td>

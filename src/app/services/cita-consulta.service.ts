@@ -1,3 +1,5 @@
+// src/app/services/cita-consulta.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -6,8 +8,8 @@ import { environment } from '../../environments/environment';
 
 // Payload para la creación de una cita, ya que el backend espera un objeto aplanado.
 export interface CitaConsultaCreatePayload {
-  fecha: string;      // "YYYY-MM-DD"
-  hora: string;       // "HH:mm:ss"
+  fecha: string;       // "YYYY-MM-DD"
+  hora: string;        // "HH:mm:ss"
   motivo: string;
   pacienteId: number;
   doctorId: number;
@@ -21,13 +23,14 @@ export interface CitaConsultaCreatePayload {
 })
 export class CitaConsultaService {
 
-  private apiUrl = `${environment.apiUrl}/api/citas`; // URL base del CitaConsultaController
+  // URL base apuntando al controlador de citas en el backend
+  private apiUrl = `${environment.apiUrl}/citas`;
 
   constructor(private http: HttpClient) { }
 
   /**
    * Obtiene todas las citas.
-   * Corresponde a: @GetMapping en CitaConsultaController
+   * GET /api/citas
    */
   getAll(): Observable<CitaConsulta[]> {
     return this.http.get<CitaConsulta[]>(this.apiUrl);
@@ -35,7 +38,7 @@ export class CitaConsultaService {
 
   /**
    * Obtiene una cita por su ID.
-   * Corresponde a: @GetMapping("/{idCita}") en CitaConsultaController
+   * GET /api/citas/{id}
    */
   getById(id: number): Observable<CitaConsulta> {
     return this.http.get<CitaConsulta>(`${this.apiUrl}/${id}`);
@@ -43,7 +46,7 @@ export class CitaConsultaService {
 
   /**
    * Obtiene las citas de un doctor en una fecha específica.
-   * Corresponde a: @GetMapping("/doctor/{idDoctor}/fecha/{fecha}") en CitaConsultaController
+   * GET /api/citas/doctor/{idDoctor}/fecha/{fecha}
    */
   getByDoctorAndDate(idDoctor: number, fecha: string): Observable<CitaConsulta[]> {
     return this.http.get<CitaConsulta[]>(`${this.apiUrl}/doctor/${idDoctor}/fecha/${fecha}`);
@@ -51,7 +54,7 @@ export class CitaConsultaService {
 
   /**
    * Obtiene las citas de un paciente en una fecha específica.
-   * Corresponde a: @GetMapping("/paciente/{idPaciente}/fecha/{fecha}") en CitaConsultaController
+   * GET /api/citas/paciente/{idPaciente}/fecha/{fecha}
    */
   getByPacienteAndDate(idPaciente: number, fecha: string): Observable<CitaConsulta[]> {
     return this.http.get<CitaConsulta[]>(`${this.apiUrl}/paciente/${idPaciente}/fecha/${fecha}`);
@@ -59,7 +62,7 @@ export class CitaConsultaService {
 
   /**
    * Crea una nueva cita. El backend se encarga de enviar el email de notificación.
-   * Corresponde a: @PostMapping en CitaConsultaController
+   * POST /api/citas
    */
   create(payload: CitaConsultaCreatePayload): Observable<CitaConsulta> {
     return this.http.post<CitaConsulta>(this.apiUrl, payload);
@@ -68,15 +71,15 @@ export class CitaConsultaService {
   /**
    * Actualiza una cita existente. El backend espera un Map,
    * por lo que enviamos un objeto con los campos a actualizar.
-   * Corresponde a: @PutMapping("/{idCita}") en CitaConsultaController
+   * PUT /api/citas/{id}
    */
-  update(id: number, updates: any): Observable<CitaConsulta> {
+  update(id: number, updates: Partial<CitaConsultaCreatePayload>): Observable<CitaConsulta> {
     return this.http.put<CitaConsulta>(`${this.apiUrl}/${id}`, updates);
   }
 
   /**
    * Elimina una cita por su ID.
-   * Corresponde a: @DeleteMapping("/{idCita}") en CitaConsultaController
+   * DELETE /api/citas/{id}
    */
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

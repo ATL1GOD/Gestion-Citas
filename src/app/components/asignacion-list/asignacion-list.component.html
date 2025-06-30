@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let a of asignaciones">
-            <td>Dr. {{ a.doctor.usuario.nombre }} {{ a.doctor.usuario.apellidoPat }}</td>
+            <td>Dr. {{ a.doctor.usuario.nombre }} {{ a.doctor.usuario.apellidoPat }} {{a.doctor.usuario.apellidoMat}}</td>
             <td>{{ a.doctor.especialidad.nombre }}</td>
             <td>N° {{ a.consultorio.numero }} (Piso {{ a.consultorio.piso }})</td>
             <td>{{ a.horario.horaInicio }} - {{ a.horario.horaFin }}</td>

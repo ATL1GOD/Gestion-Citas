@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class TipoUsuarioService {
 
-  private apiUrl = `${environment.apiUrl}/api/tipousuarios`; // URL base del TipoUsuarioController
+  private apiUrl = `${environment.apiUrl}/tipousuarios`; // URL base del TipoUsuarioController
 
   constructor(private http: HttpClient) { }
 

@@ -23,39 +23,21 @@
           </thead>
           <tbody>
             <tr *ngFor="let doctor of doctores">
-              <td>
-                Dr. {{ doctor.usuario.nombre }}
-                {{ doctor.usuario.apellidoPat }}
-                {{ doctor.usuario.apellidoMat }}
-              </td>
+              <td>Dr. {{ doctor.usuario.nombre }} {{ doctor.usuario.apellidoPat }} {{ doctor.usuario.apellidoMat }}</td>
               <td>{{ doctor.noCedula }}</td>
-              <td>
-                <span class="badge bg-info text-dark">{{
-                  doctor.especialidad.nombre
-                }}</span>
-              </td>
+              <td><span class="badge bg-info text-dark">{{ doctor.especialidad.nombre }}</span></td>
               <td>{{ doctor.usuario.email }}</td>
               <td class="text-end">
-                <a
-                  [routerLink]="['/admin/doctores/editar', doctor.idDoctor]"
-                  class="btn btn-sm btn-warning me-2"
-                  title="Editar"
-                >
+                <a [routerLink]="['/admin/doctores/editar', doctor.idDoctor]" class="btn btn-sm btn-warning me-2" title="Editar">
                   <i class="bi bi-pencil-fill"></i>
                 </a>
-                <button
-                  (click)="eliminarDoctor(doctor.idDoctor)"
-                  class="btn btn-sm btn-danger"
-                  title="Eliminar"
-                >
+                <button (click)="eliminarDoctor(doctor.idDoctor)" class="btn btn-sm btn-danger" title="Eliminar">
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>
             </tr>
             <tr *ngIf="doctores.length === 0 && !error">
-              <td colspan="5" class="text-center text-muted">
-                No hay doctores registrados.
-              </td>
+              <td colspan="5" class="text-center text-muted">No hay doctores registrados.</td>
             </tr>
           </tbody>
         </table>

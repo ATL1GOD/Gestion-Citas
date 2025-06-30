@@ -20,23 +20,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let rol of tiposUsuario">
-            <td>
-              <strong>{{ rol.idTipoUsuario }}</strong>
-            </td>
+            <td><strong>{{ rol.idTipoUsuario }}</strong></td>
             <td>{{ rol.nombre }}</td>
             <td class="text-end">
-              <a
-                [routerLink]="['/admin/roles/editar', rol.idTipoUsuario]"
-                class="btn btn-sm btn-warning me-2"
-                title="Editar"
-              >
+              <a [routerLink]="['/admin/roles/editar', rol.idTipoUsuario]" class="btn btn-sm btn-warning me-2" title="Editar">
                 <i class="bi bi-pencil-fill"></i>
               </a>
-              <button
-                (click)="eliminarRol(rol.idTipoUsuario)"
-                class="btn btn-sm btn-danger"
-                title="Eliminar"
-              >
+              <button (click)="eliminarRol(rol.idTipoUsuario)" class="btn btn-sm btn-danger" title="Eliminar">
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>

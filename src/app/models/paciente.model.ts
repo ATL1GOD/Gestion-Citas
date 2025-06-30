@@ -12,3 +12,11 @@ export interface Paciente {
   alergias: string;
   usuario: Usuario;
 }
+
+export interface PacienteReceta {
+  idPaciente: number;
+  curp: string;
+  nombre: string;
+  apellidoPat: string;
+  apellidoMat: string;
+}

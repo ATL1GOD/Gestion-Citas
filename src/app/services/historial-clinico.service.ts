@@ -22,7 +22,7 @@ export interface HistorialCreatePayload {
 })
 export class HistorialClinicoService {
 
-  private apiUrl = `${environment.apiUrl}/api/historiales`; // URL base del HistorialClinicoController
+  private apiUrl = `${environment.apiUrl}/historiales`; // URL base del HistorialClinicoController
 
   constructor(private http: HttpClient) { }
 

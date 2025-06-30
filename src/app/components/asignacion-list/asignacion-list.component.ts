@@ -33,17 +33,11 @@ export class AsignacionListComponent implements OnInit {
 
   eliminarAsignacion(asignacion: DoctorConsultorio): void {
     const { doctor, consultorio, horario } = asignacion;
-    if (
-      confirm(
-        `¿Seguro que desea eliminar la asignación del Dr. ${doctor.usuario.apellidoPat} al consultorio ${consultorio.numero}?`
-      )
-    ) {
-      this.asignacionService
-        .delete(doctor.idDoctor, consultorio.idConsultorio, horario.idHorario)
-        .subscribe({
-          next: () => this.cargarAsignaciones(),
-          error: (err) => (this.error = 'Error al eliminar la asignación.'),
-        });
+    if (confirm(`¿Seguro que desea eliminar la asignación del Dr. ${doctor.usuario.apellidoPat} al consultorio ${consultorio.numero}?`)) {
+      this.asignacionService.delete(doctor.idDoctor, consultorio.idConsultorio, horario.idHorario).subscribe({
+        next: () => this.cargarAsignaciones(),
+        error: (err) => this.error = 'Error al eliminar la asignación.'
+      });
     }
   }
 }

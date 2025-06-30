@@ -33,25 +33,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let med of medicamentos">
-            <td>
-              <strong>{{ med.idMedicamento }}</strong>
-            </td>
+            <td><strong>{{ med.idMedicamento }}</strong></td>
             <td>{{ med.nombre }}</td>
             <td>{{ med.presentacion }}</td>
             <td>{{ med.descripcion }}</td>
             <td class="text-end">
-              <a
-                [routerLink]="['/admin/medicamentos/editar', med.idMedicamento]"
-                class="btn btn-sm btn-warning me-2"
-                title="Editar"
-              >
+              <a [routerLink]="['/admin/medicamentos/editar', med.idMedicamento]" class="btn btn-sm btn-warning me-2" title="Editar">
                 <i class="bi bi-pencil-fill"></i>
               </a>
-              <button
-                (click)="eliminarMedicamento(med.idMedicamento)"
-                class="btn btn-sm btn-danger"
-                title="Eliminar"
-              >
+              <button (click)="eliminarMedicamento(med.idMedicamento)" class="btn btn-sm btn-danger" title="Eliminar">
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
