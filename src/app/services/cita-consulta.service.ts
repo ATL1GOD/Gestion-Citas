@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CitaConsulta } from '../models/cita-consulta.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 // Payload para la creación de una cita, ya que el backend espera un objeto aplanado.
 export interface CitaConsultaCreatePayload {
@@ -20,7 +21,7 @@ export interface CitaConsultaCreatePayload {
 })
 export class CitaConsultaService {
 
-  private apiUrl = '/api/citas'; // URL base del CitaConsultaController
+  private apiUrl = `${environment.apiUrl}/api/citas`; // URL base del CitaConsultaController
 
   constructor(private http: HttpClient) { }
 

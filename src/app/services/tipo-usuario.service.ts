@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TipoUsuario } from '../models/tipo-usuario.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipoUsuarioService {
 
-  private apiUrl = '/api/tipousuarios'; // URL base del TipoUsuarioController
+  private apiUrl = `${environment.apiUrl}/api/tipousuarios`; // URL base del TipoUsuarioController
 
   constructor(private http: HttpClient) { }
 

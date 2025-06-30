@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recepcionista } from '../models/recepcionista.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 // Payload para la creación, ya que el backend espera un objeto aplanado.
 export interface RecepcionistaCreatePayload {
@@ -20,7 +21,7 @@ export interface RecepcionistaCreatePayload {
 })
 export class RecepcionistaService {
 
-  private apiUrl = '/api/recepcionistas'; // URL base del RecepcionistaController
+  private apiUrl = `${environment.apiUrl}/api/recepcionistas`; // URL base del RecepcionistaController
 
   constructor(private http: HttpClient) { }
 

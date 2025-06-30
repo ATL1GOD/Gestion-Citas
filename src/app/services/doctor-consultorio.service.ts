@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DoctorConsultorio } from '../models/doctor-consultorio.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 export interface DoctorConsultorioCreatePayload {
   doctorId: number;
@@ -23,7 +24,7 @@ export interface DoctorConsultorioUpdatePayload {
 })
 export class DoctorConsultorioService {
 
-  private apiUrl = '/api/asignaciones'; // URL base del DoctorConsultorioController
+  private apiUrl = `${environment.apiUrl}/api/asignaciones`; // URL base del DoctorConsultorioController
 
   constructor(private http: HttpClient) { }
 

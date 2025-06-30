@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HistorialClinico } from '../models/historial-clinico.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 // Payload para la creación, ya que el backend espera un objeto aplanado.
 export interface HistorialCreatePayload {
@@ -21,7 +22,7 @@ export interface HistorialCreatePayload {
 })
 export class HistorialClinicoService {
 
-  private apiUrl = '/api/historiales'; // URL base del HistorialClinicoController
+  private apiUrl = `${environment.apiUrl}/api/historiales`; // URL base del HistorialClinicoController
 
   constructor(private http: HttpClient) { }
 

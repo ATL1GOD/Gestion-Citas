@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Consultorio } from '../models/consultorio.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConsultorioService {
 
-  private apiUrl = '/api/consultorios'; // URL base del ConsultorioController
+  private apiUrl = `${environment.apiUrl}/api/consultorios`; // URL base del ConsultorioController
 
   constructor(private http: HttpClient) { }
 

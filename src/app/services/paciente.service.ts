@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Paciente } from '../models/paciente.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PacienteService {
 
-  private apiUrl = '/api/pacientes'; // URL base del PacienteController
+  private apiUrl = `${environment.apiUrl}/api/pacientes`; // URL base del PacienteController
 
   constructor(private http: HttpClient) { }
 

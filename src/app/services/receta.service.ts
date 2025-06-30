@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Receta } from '../models/receta.model'; // Asegúrate de tener este modelo
 import { RecetaDetalle } from '../models/receta-detalle.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 // Payload para la creación de la cabecera de la receta
 export interface RecetaCreatePayload {
@@ -17,8 +18,8 @@ export interface RecetaCreatePayload {
 })
 export class RecetaService {
 
-  private recetaApiUrl = '/api/recetas';
-  private detalleApiUrl = '/api/recetas-detalle';
+  private recetaApiUrl = `${environment.apiUrl}/api/recetas`;
+  private detalleApiUrl = `${environment.apiUrl}/api/recetas-detalle`;
 
   constructor(private http: HttpClient) { }
 

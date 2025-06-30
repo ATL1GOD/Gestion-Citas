@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estatus } from '../models/estatus.model'; // Asegúrate de tener este modelo
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstatusService {
 
-  private apiUrl = '/api/estatus'; // URL base del EstatusController
+  private apiUrl = `${environment.apiUrl}/api/estatus`; // URL base del EstatusController
 
   constructor(private http: HttpClient) { }
 
