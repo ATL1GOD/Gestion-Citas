@@ -75,13 +75,7 @@ export class UsuarioFormComponent implements OnInit {
         this.usuarioForm.patchValue({
           ...data,
           // El control 'tipoUsuario' espera el objeto completo para que el select funcione
-<<<<<<< HEAD
           tipoUsuario: this.tiposUsuario.find(tu => tu.idTipoUsuario === data.tipoUsuario.idTipoUsuario)
-=======
-          tipoUsuario: this.tiposUsuario.find(
-            (tu) => tu.idTipoUsuario === data.tipoUsuario.idTipoUsuario
-          ),
->>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
         });
       },
       error: (err) => (this.error = 'No se pudo cargar el usuario.'),

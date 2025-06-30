@@ -4,7 +4,6 @@
  */
 export interface Horario {
   idHorario: number;
-<<<<<<< HEAD
   horario?: string;     // Para una hora específica, ej: "14:00:00"
   horaInicio?: string;  // Para un rango, ej: "09:00:00"
   horaFin?: string;     // Para un rango, ej: "17:00:00"
@@ -12,9 +11,4 @@ export interface Horario {
   recepcionistas?: number; // ID del recepcionista asociado a este horario
   HoraFinValida?: string; // ID de la cita asociada a este horario, si es que es una hora específica
 }
-=======
-  horario?: string; // Para una hora específica, ej: "14:00:00"
-  horaInicio?: string; // Para un rango, ej: "09:00:00"
-  horaFin?: string; // Para un rango, ej: "17:00:00"
-}
->>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
+
