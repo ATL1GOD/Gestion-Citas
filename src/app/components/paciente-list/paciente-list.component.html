@@ -24,22 +24,39 @@
           </thead>
           <tbody>
             <tr *ngFor="let paciente of pacientes">
-              <td>{{ paciente.usuario.nombre }} {{ paciente.usuario.apellidoPat }} {{ paciente.usuario.apellidoMat }}</td>
+              <td>
+                {{ paciente.usuario.nombre }}
+                {{ paciente.usuario.apellidoPat }}
+                {{ paciente.usuario.apellidoMat }}
+              </td>
               <td>{{ paciente.usuario.email }}</td>
               <td>{{ paciente.curp }}</td>
-              <td>{{ paciente.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+              <td>{{ paciente.fechaNacimiento | date : "dd/MM/yyyy" }}</td>
               <td>{{ paciente.tipoSangre }}</td>
               <td class="text-end">
-                <a [routerLink]="['/admin/pacientes/editar', paciente.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+                <a
+                  [routerLink]="[
+                    '/admin/pacientes/editar',
+                    paciente.idPaciente
+                  ]"
+                  class="btn btn-sm btn-warning me-2"
+                  title="Editar"
+                >
                   <i class="bi bi-pencil-fill"></i>
                 </a>
-                <button (click)="eliminarPaciente(paciente.id)" class="btn btn-sm btn-danger" title="Eliminar">
+                <button
+                  (click)="eliminarPaciente(paciente.idPaciente)"
+                  class="btn btn-sm btn-danger"
+                  title="Eliminar"
+                >
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>
             </tr>
             <tr *ngIf="pacientes.length === 0 && !error">
-              <td colspan="6" class="text-center text-muted">No hay pacientes para mostrar.</td>
+              <td colspan="6" class="text-center text-muted">
+                No hay pacientes para mostrar.
+              </td>
             </tr>
           </tbody>
         </table>

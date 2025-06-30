@@ -21,24 +21,46 @@
         </thead>
         <tbody>
           <tr *ngFor="let horario of horarios">
+<<<<<<< HEAD
             <td><strong>{{ horario.idHorario }}</strong></td>
+=======
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
             <td>
-              <span *ngIf="horario.horario" class="badge bg-info">Hora Única</span>
-              <span *ngIf="horario.horaInicio" class="badge bg-primary">Rango</span>
+              <strong>{{ horario.idHorario }}</strong>
+            </td>
+            <td>
+              <span *ngIf="horario.horario" class="badge bg-info"
+                >Hora Única</span
+              >
+              <span *ngIf="horario.horaInicio" class="badge bg-primary"
+                >Rango</span
+              >
             </td>
             <td>
               <span *ngIf="horario.horario">{{ horario.horario }}</span>
-              <span *ngIf="horario.horaInicio">De {{ horario.horaInicio }} a {{ horario.horaFin }}</span>
+              <span *ngIf="horario.horaInicio"
+                >De {{ horario.horaInicio }} a {{ horario.horaFin }}</span
+              >
             </td>
             <td class="text-end">
+<<<<<<< HEAD
               
               <button (click)="eliminarHorario(horario.idHorario)" class="btn btn-sm btn-danger" title="Eliminar">
+=======
+              <button
+                (click)="eliminarHorario(horario.idHorario)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="horarios.length === 0 && !error">
-            <td colspan="4" class="text-center text-muted">No hay horarios para mostrar.</td>
+            <td colspan="4" class="text-center text-muted">
+              No hay horarios para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>

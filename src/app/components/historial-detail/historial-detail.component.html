@@ -1,7 +1,9 @@
 <div class="container mt-4" *ngIf="historial; else loading">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Registro Clínico #{{ historial.id }}</h2>
-    <a routerLink="/consultas/historiales" class="btn btn-secondary">Volver a la Lista</a>
+    <h2>Registro Clínico #{{ historial.idHistorial }}</h2>
+    <a routerLink="/consultas/historiales" class="btn btn-secondary"
+      >Volver a la Lista</a
+    >
   </div>
 
   <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
@@ -12,22 +14,31 @@
       <div class="row border-bottom pb-3 mb-3">
         <div class="col-md-6">
           <h5>Paciente</h5>
-          <p>{{ historial.paciente.usuario.nombre }} {{ historial.paciente.usuario.apellidoPat }}</p>
+          <p>
+            {{ historial.paciente.usuario.nombre }}
+            {{ historial.paciente.usuario.apellidoPat }}
+          </p>
         </div>
         <div class="col-md-6">
           <h5>Doctor</h5>
-          <p>Dr. {{ historial.doctor.usuario.nombre }} {{ historial.doctor.usuario.apellidoPat }}</p>
+          <p>
+            Dr. {{ historial.doctor.usuario.nombre }}
+            {{ historial.doctor.usuario.apellidoPat }}
+          </p>
         </div>
         <div class="col-md-6">
           <h5>Cita Asociada</h5>
-          <p>{{ historial.cita.fecha | date:'dd/MM/yyyy' }} - {{ historial.cita.motivo }}</p>
+          <p>
+            {{ historial.cita.fecha | date : "dd/MM/yyyy" }} -
+            {{ historial.cita.motivo }}
+          </p>
         </div>
-         <div class="col-md-6">
+        <div class="col-md-6">
           <h5>Fecha de Diagnóstico</h5>
-          <p>{{ historial.fechaDiagnostico | date:'dd/MM/yyyy' }}</p>
+          <p>{{ historial.fechaDiagnostico | date : "dd/MM/yyyy" }}</p>
         </div>
       </div>
-      
+
       <div class="row pb-3 mb-3">
         <div class="col-12 mb-3">
           <h5>Diagnóstico</h5>
@@ -37,9 +48,11 @@
           <h5>Tratamiento</h5>
           <p class="bg-light p-2 rounded">{{ historial.tratamiento }}</p>
         </div>
-         <div class="col-12">
+        <div class="col-12">
           <h5>Notas Adicionales</h5>
-          <p class="bg-light p-2 rounded">{{ historial.notas || 'Sin notas adicionales.' }}</p>
+          <p class="bg-light p-2 rounded">
+            {{ historial.notas || "Sin notas adicionales." }}
+          </p>
         </div>
       </div>
 
@@ -48,23 +61,34 @@
           <h5>Archivos Adjuntos</h5>
           <div *ngIf="historial.archivoAdjuntoPath; else noFile">
             <button (click)="onDownload()" class="btn btn-success">
-              <i class="bi bi-download me-2"></i>Descargar: {{ historial.archivoAdjuntoPath }}
+              <i class="bi bi-download me-2"></i>Descargar:
+              {{ historial.archivoAdjuntoPath }}
             </button>
           </div>
           <ng-template #noFile>
-            <p class="text-muted">No hay archivos adjuntos para este registro.</p>
+            <p class="text-muted">
+              No hay archivos adjuntos para este registro.
+            </p>
           </ng-template>
 
-          <hr class="my-4">
-          
+          <hr class="my-4" />
+
           <h6>Subir o Reemplazar Archivo</h6>
           <div class="input-group">
-            <input type="file" class="form-control" (change)="onFileSelected($event)">
-            <button class="btn btn-primary" type="button" (click)="onUpload()" [disabled]="!selectedFile">
+            <input
+              type="file"
+              class="form-control"
+              (change)="onFileSelected($event)"
+            />
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="onUpload()"
+              [disabled]="!selectedFile"
+            >
               <i class="bi bi-upload me-2"></i>Subir
             </button>
           </div>
-
         </div>
       </div>
     </div>

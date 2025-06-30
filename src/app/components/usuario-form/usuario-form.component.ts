@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
@@ -12,10 +17,9 @@ import { Usuario } from '../../models/usuario.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './usuario-form.component.html',
-  styleUrl: './usuario-form.component.css'
+  styleUrl: './usuario-form.component.css',
 })
 export class UsuarioFormComponent implements OnInit {
-
   usuarioForm!: FormGroup;
   tiposUsuario: TipoUsuario[] = [];
   isEditMode = false;
@@ -40,7 +44,7 @@ export class UsuarioFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
       contrasena: [''], // La contraseña no es obligatoria al editar
-      tipoUsuario: [null, Validators.required]
+      tipoUsuario: [null, Validators.required],
     });
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -52,12 +56,16 @@ export class UsuarioFormComponent implements OnInit {
       this.cargarDatosUsuario(this.usuarioId);
     } else {
       // Al crear, la contraseña es requerida
-      this.usuarioForm.get('contrasena')?.setValidators([Validators.required, Validators.minLength(6)]);
+      this.usuarioForm
+        .get('contrasena')
+        ?.setValidators([Validators.required, Validators.minLength(6)]);
     }
   }
 
   cargarTiposUsuario(): void {
-    this.tipoUsuarioService.getAll().subscribe(data => this.tiposUsuario = data);
+    this.tipoUsuarioService
+      .getAll()
+      .subscribe((data) => (this.tiposUsuario = data));
   }
 
   cargarDatosUsuario(id: number): void {
@@ -67,13 +75,19 @@ export class UsuarioFormComponent implements OnInit {
         this.usuarioForm.patchValue({
           ...data,
           // El control 'tipoUsuario' espera el objeto completo para que el select funcione
+<<<<<<< HEAD
           tipoUsuario: this.tiposUsuario.find(tu => tu.idTipoUsuario === data.tipoUsuario.idTipoUsuario)
+=======
+          tipoUsuario: this.tiposUsuario.find(
+            (tu) => tu.idTipoUsuario === data.tipoUsuario.idTipoUsuario
+          ),
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
         });
       },
-      error: (err) => this.error = "No se pudo cargar el usuario."
+      error: (err) => (this.error = 'No se pudo cargar el usuario.'),
     });
   }
-  
+
   // Para que el <select> compare objetos correctamente
   compareRoles(t1: TipoUsuario, t2: TipoUsuario): boolean {
     return t1 && t2 ? t1.idTipoUsuario === t2.idTipoUsuario : t1 === t2;
@@ -84,7 +98,7 @@ export class UsuarioFormComponent implements OnInit {
       this.usuarioForm.markAllAsTouched();
       return;
     }
-    
+
     const formValue: Usuario = this.usuarioForm.value;
 
     // Si estamos en modo edición y la contraseña está vacía, la eliminamos del objeto
@@ -100,9 +114,11 @@ export class UsuarioFormComponent implements OnInit {
     operation.subscribe({
       next: () => this.router.navigate(['/admin/usuarios']),
       error: (err) => {
-        this.error = `Error al ${this.isEditMode ? 'actualizar' : 'crear'} el usuario.`;
+        this.error = `Error al ${
+          this.isEditMode ? 'actualizar' : 'crear'
+        } el usuario.`;
         console.error(err);
-      }
+      },
     });
   }
 }

@@ -99,7 +99,7 @@ export class PacienteFormComponent implements OnInit {
       : this.pacienteService.create(formValue);
 
     operation.subscribe({
-      next: () => this.router.navigate(['/admin/pacientes']),
+      next: (createdOrUpdatedPaciente) => this.router.navigate(['/admin/pacientes']),
       error: (err) => {
         this.error = `Error al ${this.isEditMode ? 'actualizar' : 'crear'} el paciente.`;
         console.error(err);

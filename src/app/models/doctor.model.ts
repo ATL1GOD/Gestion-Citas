@@ -13,6 +13,10 @@ export interface Doctor {
   noCedula: string;
   usuario: Usuario;
   especialidad: Especialidad;
+<<<<<<< HEAD
   citas: CitaConsulta;
   historiales: HistorialClinico;
 }
+=======
+}
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd

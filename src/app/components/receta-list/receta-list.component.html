@@ -22,21 +22,39 @@
         </thead>
         <tbody>
           <tr *ngFor="let receta of recetas">
-            <td><strong>{{ receta.id }}</strong></td>
-            <td>{{ receta.fecha | date:'dd/MM/yyyy' }}</td>
-            <td>{{ receta.paciente.usuario.nombre }} {{ receta.paciente.usuario.apellidoPat }}</td>
-            <td>Dr. {{ receta.doctor.usuario.nombre }} {{ receta.doctor.usuario.apellidoPat }}</td>
+            <td>
+              <strong>{{ receta.idReceta }}</strong>
+            </td>
+            <td>{{ receta.fecha | date : "dd/MM/yyyy" }}</td>
+            <td>
+              {{ receta.paciente.usuario.nombre }}
+              {{ receta.paciente.usuario.apellidoPat }}
+            </td>
+            <td>
+              Dr. {{ receta.doctor.usuario.nombre }}
+              {{ receta.doctor.usuario.apellidoPat }}
+            </td>
             <td class="text-end">
-              <a [routerLink]="['/consultas/recetas/detalles', receta.id]" class="btn btn-sm btn-info me-2" title="Ver/Editar Detalles">
+              <a
+                [routerLink]="['/consultas/recetas/detalles', receta.idReceta]"
+                class="btn btn-sm btn-info me-2"
+                title="Ver/Editar Detalles"
+              >
                 <i class="bi bi-list-ul"></i> Detalles
               </a>
-              <button (click)="eliminarReceta(receta.id)" class="btn btn-sm btn-danger" title="Eliminar">
+              <button
+                (click)="eliminarReceta(receta.idReceta)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="recetas.length === 0 && !error">
-            <td colspan="5" class="text-center text-muted">No hay recetas para mostrar.</td>
+            <td colspan="5" class="text-center text-muted">
+              No hay recetas para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Receta } from '../../models/receta.model';
 import { RecetaService } from '../../services/receta.service';
@@ -13,10 +18,9 @@ import { RecetaDetalle } from '../../models/receta-detalle.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './receta-detail.component.html',
-  styleUrl: './receta-detail.component.css'
+  styleUrl: './receta-detail.component.css',
 })
 export class RecetaDetailComponent implements OnInit {
-
   receta: Receta | null = null;
   addMedicamentoForm!: FormGroup;
   medicamentosCatalogo: Medicamento[] = [];
@@ -32,11 +36,11 @@ export class RecetaDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.recetaId = +this.route.snapshot.paramMap.get('id')!;
-    
+
     this.addMedicamentoForm = this.fb.group({
       medicamento: [null, Validators.required],
       dosis: ['', Validators.required],
-      indicaciones: ['', Validators.required]
+      indicaciones: ['', Validators.required],
     });
 
     this.cargarReceta();
@@ -45,13 +49,15 @@ export class RecetaDetailComponent implements OnInit {
 
   cargarReceta(): void {
     this.recetaService.getById(this.recetaId).subscribe({
-      next: data => this.receta = data,
-      error: err => this.error = "No se pudo cargar la receta."
+      next: (data) => (this.receta = data),
+      error: (err) => (this.error = 'No se pudo cargar la receta.'),
     });
   }
 
   cargarCatalogoMedicamentos(): void {
-    this.medicamentoService.getAll().subscribe(data => this.medicamentosCatalogo = data);
+    this.medicamentoService
+      .getAll()
+      .subscribe((data) => (this.medicamentosCatalogo = data));
   }
 
   agregarMedicamento(): void {
@@ -59,13 +65,13 @@ export class RecetaDetailComponent implements OnInit {
       this.addMedicamentoForm.markAllAsTouched();
       return;
     }
-    
+
     const formValue = this.addMedicamentoForm.value;
     const nuevoDetalle: Partial<RecetaDetalle> = {
-      receta: { id: this.recetaId } as Receta,
+      receta: { idReceta: this.recetaId } as Receta,
       medicamento: formValue.medicamento,
       dosis: formValue.dosis,
-      indicaciones: formValue.indicaciones
+      indicaciones: formValue.indicaciones,
     };
 
     this.recetaService.addDetalle(nuevoDetalle as RecetaDetalle).subscribe({
@@ -73,7 +79,7 @@ export class RecetaDetailComponent implements OnInit {
         this.cargarReceta(); // Recargar los detalles de la receta
         this.addMedicamentoForm.reset();
       },
-      error: err => this.error = "Error al añadir el medicamento."
+      error: (err) => (this.error = 'Error al añadir el medicamento.'),
     });
   }
 
@@ -81,7 +87,7 @@ export class RecetaDetailComponent implements OnInit {
     if (confirm('¿Quitar este medicamento de la receta?')) {
       this.recetaService.removeDetalle(idDetalle).subscribe({
         next: () => this.cargarReceta(),
-        error: err => this.error = "Error al quitar el medicamento."
+        error: (err) => (this.error = 'Error al quitar el medicamento.'),
       });
     }
   }

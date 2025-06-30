@@ -8,5 +8,9 @@ export interface Medicamento {
   nombre: string;
   presentacion: string;
   descripcion: string;
+<<<<<<< HEAD
   recetaDetalles: RecetaDetalle;
 }
+=======
+}
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
