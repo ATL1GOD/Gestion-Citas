@@ -33,12 +33,11 @@
               <span
                 class="badge"
                 [ngClass]="{
-                  'bg-info text-dark':
-                    consultorio.estatus.nombre === 'Disponible',
+                  'bg-info text-dark': consultorio.estatus.nombre === 'Ocupado',
                   'bg-warning text-dark':
                     consultorio.estatus.nombre === 'Desocupado',
                   'bg-danger text-white':
-                    consultorio.estatus.nombre === 'Mantenimiento'
+                    consultorio.estatus.nombre === 'Cancelada'
                 }"
               >
                 {{ consultorio.estatus.nombre }}

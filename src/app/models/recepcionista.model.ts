@@ -7,7 +7,7 @@ import { Usuario } from './usuario.model';
  * Contiene objetos anidados de Usuario, Horario y Consultorio.
  */
 export interface Recepcionista {
-  id: number;
+  idRecepcionista: number;
   usuario: Usuario;
   horario: Horario;
   consultorio: Consultorio;
