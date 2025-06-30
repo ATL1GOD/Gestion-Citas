@@ -23,19 +23,37 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let historial of historiales" [routerLink]="['/consultas/historiales', historial.id]" style="cursor: pointer;">
-              <td>{{ historial.paciente.usuario.nombre }} {{ historial.paciente.usuario.apellidoPat }}</td>
-              <td>Dr. {{ historial.doctor.usuario.nombre }} {{ historial.doctor.usuario.apellidoPat }}</td>
-              <td>{{ historial.fechaDiagnostico | date:'dd/MM/yyyy' }}</td>
+            <tr
+              *ngFor="let historial of historiales"
+              [routerLink]="['/consultas/historiales', historial.id]"
+              style="cursor: pointer"
+            >
+              <td>
+                {{ historial.paciente.usuario.nombre }}
+                {{ historial.paciente.usuario.apellidoPat }}
+              </td>
+              <td>
+                Dr. {{ historial.doctor.usuario.nombre }}
+                {{ historial.doctor.usuario.apellidoPat }}
+              </td>
+              <td>{{ historial.fechaDiagnostico | date : "dd/MM/yyyy" }}</td>
               <td>{{ historial.diagnostico }}</td>
               <td class="text-end">
-                <button (click)="enviarPorEmail(historial.paciente.id, $event)" class="btn btn-sm btn-outline-success" title="Enviar Historial por Email">
+                <button
+                  (click)="
+                    enviarPorEmail(historial.paciente.idPaciente, $event)
+                  "
+                  class="btn btn-sm btn-outline-success"
+                  title="Enviar Historial por Email"
+                >
                   <i class="bi bi-envelope-at-fill"></i> Enviar
                 </button>
               </td>
             </tr>
             <tr *ngIf="historiales.length === 0 && !error">
-              <td colspan="5" class="text-center text-muted">No hay historiales clínicos para mostrar.</td>
+              <td colspan="5" class="text-center text-muted">
+                No hay historiales clínicos para mostrar.
+              </td>
             </tr>
           </tbody>
         </table>

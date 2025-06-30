@@ -5,7 +5,7 @@ import { Usuario } from './usuario.model';
  * Contiene un objeto Usuario anidado.
  */
 export interface Paciente {
-  id: number;
+  idPaciente: number;
   curp: string;
   fechaNacimiento: string; // Formato "YYYY-MM-DD"
   tipoSangre: string;

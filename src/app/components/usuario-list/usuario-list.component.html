@@ -24,22 +24,41 @@
           </thead>
           <tbody>
             <tr *ngFor="let usuario of usuarios">
-              <td><strong>{{ usuario.id }}</strong></td>
-              <td>{{ usuario.nombre }} {{ usuario.apellidoPat }} {{ usuario.apellidoMat }}</td>
+              <td>
+                <strong>{{ usuario.idUsuario }}</strong>
+              </td>
+              <td>
+                {{ usuario.nombre }} {{ usuario.apellidoPat }}
+                {{ usuario.apellidoMat }}
+              </td>
               <td>{{ usuario.email }}</td>
               <td>{{ usuario.telefono }}</td>
-              <td><span class="badge bg-secondary">{{ usuario.tipoUsuario.nombre }}</span></td>
+              <td>
+                <span class="badge bg-secondary">{{
+                  usuario.tipoUsuario.nombre
+                }}</span>
+              </td>
               <td class="text-end">
-                <a [routerLink]="['/admin/usuarios/editar', usuario.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+                <a
+                  [routerLink]="['/admin/usuarios/editar', usuario.idUsuario]"
+                  class="btn btn-sm btn-warning me-2"
+                  title="Editar"
+                >
                   <i class="bi bi-pencil-fill"></i>
                 </a>
-                <button (click)="eliminarUsuario(usuario.id)" class="btn btn-sm btn-danger" title="Eliminar">
+                <button
+                  (click)="eliminarUsuario(usuario.idUsuario)"
+                  class="btn btn-sm btn-danger"
+                  title="Eliminar"
+                >
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>
             </tr>
             <tr *ngIf="usuarios.length === 0 && !error">
-              <td colspan="6" class="text-center text-muted">No hay usuarios para mostrar.</td>
+              <td colspan="6" class="text-center text-muted">
+                No hay usuarios para mostrar.
+              </td>
             </tr>
           </tbody>
         </table>

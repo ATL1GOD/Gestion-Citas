@@ -7,7 +7,7 @@ import { Usuario } from './usuario.model';
  * Archivo de origen: DoctorController.java
  */
 export interface Doctor {
-  id: number;
+  idDoctor: number;
   noCedula: string;
   usuario: Usuario;
   especialidad: Especialidad;
