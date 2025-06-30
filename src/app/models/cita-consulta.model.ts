@@ -2,7 +2,7 @@ import { Consultorio } from './consultorio.model';
 import { Doctor } from './doctor.model';
 import { Especialidad } from './especialidad.model';
 import { Estatus } from './estatus.model';
-import { Paciente } from './paciente.model'; // Asumiendo que tienes este modelo.
+import { Paciente } from '../models/paciente.model'; // Asumiendo que tienes este modelo.
 
 /**
  * Representa una cita médica completa con todas sus relaciones.
@@ -11,6 +11,26 @@ import { Paciente } from './paciente.model'; // Asumiendo que tienes este modelo
  * Archivo de origen: CitaConsultaController.java
  */
 export interface CitaConsulta {
+<<<<<<< HEAD
+  idCita:     number;
+  fecha:      string;       // "YYYY-MM-DD"
+  hora:       [number,number]; // [hora, minuto]
+  motivo:     string;
+  doctor:     {
+    nombre:       string;
+    apellido:     string;
+    noCedula:     string;
+    especialidad: string;
+  };
+  paciente:   {
+    curp:         string;
+    nombre:       string;
+    apellidoPat:  string;
+    apellidoMat:  string;
+  };
+  estatus:    string;
+  consultorio:string;
+=======
   idCita: number;
   fecha: string; // Formato "YYYY-MM-DD"
   hora: string; // Formato "HH:mm:ss"
@@ -19,6 +39,7 @@ export interface CitaConsulta {
   doctor: Doctor;
   consultorio: Consultorio;
   estatus: Estatus;
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
 }
 
 /**

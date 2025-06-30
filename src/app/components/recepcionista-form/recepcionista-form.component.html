@@ -80,6 +80,19 @@
               <legend class="w-auto px-2 fs-6">Asignación de Puesto</legend>
               <div class="row">
                 <div class="col-md-6 mb-3">
+<<<<<<< HEAD
+                  <label for="consultorioId" class="form-label">Consultorio Asignado</label>
+                  <select id="consultorioId" class="form-select" formControlName="consultorioId">
+                    <option [ngValue]="null" disabled>Seleccione un consultorio...</option>
+                    <option *ngFor="let c of consultorios" [value]="c.idConsultorio">N° {{ c.numero }} (Piso {{ c.piso }})</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="horarioId" class="form-label">Horario de Trabajo</label>
+                   <select id="horarioId" class="form-select" formControlName="horarioId">
+                    <option [ngValue]="null" disabled>Seleccione un horario...</option>
+                    <option *ngFor="let h of horarios" [value]="h.idHorario">{{ h.horaInicio }} - {{ h.horaFin }}</option>
+=======
                   <label for="consultorioId" class="form-label"
                     >Consultorio Asignado</label
                   >
@@ -114,6 +127,7 @@
                     <option *ngFor="let h of horarios" [value]="h.idHorario">
                       {{ h.horaInicio }} - {{ h.horaFin }}
                     </option>
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                   </select>
                 </div>
               </div>

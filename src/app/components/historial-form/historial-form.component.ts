@@ -57,6 +57,21 @@ export class HistorialFormComponent implements OnInit {
     this.cargarDatosIniciales();
 
     // Cargar citas del paciente cuando se seleccione uno
+<<<<<<< HEAD
+    this.historialForm.get('pacienteId')?.valueChanges.subscribe(pacienteId => {
+      this.historialForm.get('citaId')?.reset();
+      this.historialForm.get('doctorId')?.reset(); // Asumimos que la cita define al doctor
+      if (pacienteId) {
+        // En un caso real, aquí se llamarían las citas solo de ese paciente.
+        // Por simplicidad del ejemplo, filtramos de una lista completa.
+        this.citaService.getAll().subscribe(todasLasCitas => {
+            this.citas = todasLasCitas.filter(c => c.paciente.curp == pacienteId);
+        });
+      } else {
+        this.citas = [];
+      }
+    });
+=======
     this.historialForm
       .get('pacienteId')
       ?.valueChanges.subscribe((pacienteId) => {
@@ -74,6 +89,7 @@ export class HistorialFormComponent implements OnInit {
           this.citas = [];
         }
       });
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
   }
 
   cargarDatosIniciales(): void {
@@ -88,9 +104,13 @@ export class HistorialFormComponent implements OnInit {
     }
 
     // El doctorId se obtiene de la cita seleccionada
+<<<<<<< HEAD
+    const citaSeleccionada = this.citas.find(c => c.idCita == this.historialForm.get('citaId')?.value);
+=======
     const citaSeleccionada = this.citas.find(
       (c) => c.idCita == this.historialForm.get('citaId')?.value
     );
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
     if (!citaSeleccionada) {
       this.error = 'Por favor, seleccione una cita válida.';
       return;
@@ -98,7 +118,11 @@ export class HistorialFormComponent implements OnInit {
 
     const payload: HistorialCreatePayload = {
       ...this.historialForm.value,
+<<<<<<< HEAD
+      doctorId: citaSeleccionada.doctor.noCedula
+=======
       doctorId: citaSeleccionada.doctor.idDoctor,
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
     };
 
     this.historialService.create(payload).subscribe({

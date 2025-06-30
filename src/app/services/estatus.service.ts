@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class EstatusService {
 
-  private apiUrl = `${environment.apiUrl}/api/estatus`; // URL base del EstatusController
+  private apiUrl = `${environment.apiUrl}/estatus`; // URL base del EstatusController
 
   constructor(private http: HttpClient) { }
 

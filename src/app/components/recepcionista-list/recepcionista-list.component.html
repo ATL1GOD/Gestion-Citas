@@ -23,7 +23,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let rec of recepcionistas">
-              <td>{{ rec.usuario.nombre }} {{ rec.usuario.apellidoPat }}</td>
+              <td>{{ rec.usuario.nombre }} {{ rec.usuario.apellidoPat }} {{ rec.usuario.apellidoMat }}</td>
               <td>{{ rec.usuario.email }}</td>
               <td>
                 N° {{ rec.consultorio.numero }} (Piso
@@ -31,6 +31,12 @@
               </td>
               <td>{{ rec.horario.horaInicio }} - {{ rec.horario.horaFin }}</td>
               <td class="text-end">
+<<<<<<< HEAD
+                 <a [routerLink]="['/admin/recepcionistas/editar', rec.idRecepcionista]" class="btn btn-sm btn-warning me-2" title="Editar">
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+                <button (click)="eliminarRecepcionista(rec.idRecepcionista)" class="btn btn-sm btn-danger" title="Eliminar">
+=======
                 <a
                   [routerLink]="[
                     '/admin/recepcionistas/editar',
@@ -46,6 +52,7 @@
                   class="btn btn-sm btn-danger"
                   title="Eliminar"
                 >
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>

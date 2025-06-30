@@ -25,29 +25,30 @@
           </thead>
           <tbody>
             <tr *ngFor="let cita of citas">
-              <td>
-                <strong>{{ cita.fecha | date:'dd/MM/yyyy' }}</strong><br>
-                <small class="text-muted">{{ cita.hora }}</small>
-              </td>
-              <td>{{ cita.paciente.usuario.nombre }} {{ cita.paciente.usuario.apellidoPat }}</td>
-              <td>Dr. {{ cita.doctor.usuario.nombre }} {{ cita.doctor.usuario.apellidoPat }}</td>
-              <td>{{ cita.especialidad.nombre }}</td>
-              <td>N° {{ cita.consultorio.numero }}</td>
-              <td>
+                <td>
+              {{ cita.fecha | date:'dd/MM/yyyy' }}
+              {{ cita.hora[0] < 10 ? '0'+cita.hora[0]:cita.hora[0] }}:{{ cita.hora[1] < 10 ? '0'+cita.hora[1]:cita.hora[1] }}
+            </td>
+            <td>{{ cita.paciente.nombre }} {{ cita.paciente.apellidoPat }} {{ cita.paciente.apellidoMat }}</td>
+            <td>Dr. {{ cita.doctor.nombre }} {{ cita.doctor.apellido }}</td>
+            <td>{{ cita.doctor.especialidad }}</td>
+            <td>{{ cita.consultorio }}</td>
+            <td>{{ cita.estatus }}</td>
+            <!-- <td>
                 <span class="badge" [ngClass]="{
-                  'bg-success': cita.estatus.nombre === 'Agendada' || cita.estatus.nombre === 'Confirmada',
-                  'bg-secondary': cita.estatus.nombre === 'Finalizada',
-                  'bg-danger': cita.estatus.nombre === 'Cancelada'
+                  'bg-success': cita.estatus === 'Agendada' || cita.estatus === 'Confirmada',
+                  'bg-secondary': cita.estatus === 'Finalizada',
+                  'bg-danger': cita.estatus === 'Cancelada'
                 }">
-                  {{ cita.estatus.nombre }}
+                  {{ cita.estatus }}
                 </span>
-              </td>
+              </td> -->
               <td class="text-end">
-                <button (click)="cancelarCita(cita.id)" class="btn btn-sm btn-warning me-2" title="Cancelar Cita"
-                        [disabled]="cita.estatus.nombre === 'Cancelada' || cita.estatus.nombre === 'Finalizada'">
+                <button (click)="cancelarCita(cita.idCita)" class="btn btn-sm btn-warning me-2" title="Cancelar Cita"
+                        [disabled]="cita.estatus === 'Cancelada' || cita.estatus === 'Finalizada'">
                   <i class="bi bi-calendar-x-fill"></i>
                 </button>
-                <button (click)="eliminarCita(cita.id)" class="btn btn-sm btn-danger" title="Eliminar Registro">
+                <button (click)="eliminarCita(cita.idCita)" class="btn btn-sm btn-danger" title="Eliminar Registro">
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>

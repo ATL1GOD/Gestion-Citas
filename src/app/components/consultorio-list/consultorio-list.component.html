@@ -23,13 +23,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let consultorio of consultorios">
+<<<<<<< HEAD
+            <td><strong>{{ consultorio.idConsultorio }}</strong></td>
+=======
             <td>
               <strong>{{ consultorio.idConsultorio }}</strong>
             </td>
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
             <td>{{ consultorio.numero }}</td>
             <td>{{ consultorio.piso }}</td>
             <td>{{ consultorio.descripcion }}</td>
             <td>
+<<<<<<< HEAD
+              <span class="badge" [ngClass]="{
+                'bg-success': consultorio.estatus.nombre === 'Desocupado',
+                'bg-warning text-dark': consultorio.estatus.nombre === 'Ocupado',
+                'bg-danger': consultorio.estatus.nombre === 'Cancelada',
+              }">
+=======
               <span
                 class="badge"
                 [ngClass]="{
@@ -40,10 +51,17 @@
                     consultorio.estatus.nombre === 'Cancelada'
                 }"
               >
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                 {{ consultorio.estatus.nombre }}
               </span>
             </td>
             <td class="text-end">
+<<<<<<< HEAD
+              <a [routerLink]="['/admin/consultorios/editar', consultorio.idConsultorio]" class="btn btn-sm btn-warning me-2" title="Editar">
+                <i class="bi bi-pencil-fill"></i>
+              </a>
+              <button (click)="eliminarConsultorio(consultorio.idConsultorio)" class="btn btn-sm btn-danger" title="Eliminar">
+=======
               <a
                 [routerLink]="[
                   '/admin/consultorios/editar',
@@ -59,6 +77,7 @@
                 class="btn btn-sm btn-danger"
                 title="Eliminar"
               >
+>>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
