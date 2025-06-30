@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
-// Importa todos los componentes que has creado
+// Importamos todos los componentes que hemos creado
+
 // Sección 1: Administración y Usuarios
 import { UsuarioListComponent } from '../app/components/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from '../app/components/usuario-form/usuario-form.component';
@@ -32,7 +33,11 @@ import { RecetaListComponent } from '../app/components/receta-list/receta-list.c
 import { RecetaFormComponent } from '../app/components/receta-form/receta-form.component';
 import { RecetaDetailComponent } from '../app/components/receta-detail/receta-detail.component';
 
-// Componente de inicio
+import { HistorialListComponent } from '../app/components/historial-list/historial-list.component';
+import { HistorialFormComponent } from '../app/components/historial-form/historial-form.component';
+import { HistorialDetailComponent } from '../app/components/historial-detail/historial-detail.component';
+
+// Sección 5: Dashboard y Componente Principal
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
@@ -46,10 +51,14 @@ export const routes: Routes = [
     { path: 'citas/nuevo', component: CitaFormComponent, title: 'Agendar Nueva Cita' },
     // { path: 'citas/editar/:id', component: CitaFormComponent, title: 'Editar Cita' }, // Descomentar si implementas la edición
 
+    // --- Rutas de Modulo Clínico e Historial  ---
     { path: 'consultas/recetas', component: RecetaListComponent, title: 'Recetas Médicas' },
     { path: 'consultas/recetas/nuevo', component: RecetaFormComponent, title: 'Crear Receta' },
     { path: 'consultas/recetas/detalles/:id', component: RecetaDetailComponent, title: 'Detalles de Receta' },
-
+    { path: 'consultas/historiales', component: HistorialListComponent, title: 'Historiales Clínicos' },
+    { path: 'consultas/historiales/nuevo', component: HistorialFormComponent, title: 'Nuevo Registro Clínico' },
+    { path: 'consultas/historiales/:id', component: HistorialDetailComponent, title: 'Detalle de Historial Clínico' },
+    
     // --- Rutas de Administración (prefijo /admin) ---
     // Usuarios y Roles
     { path: 'admin/usuarios', component: UsuarioListComponent, title: 'Gestión de Usuarios' },
@@ -63,9 +72,8 @@ export const routes: Routes = [
     { path: 'admin/pacientes', component: PacienteListComponent, title: 'Gestión de Pacientes' },
     { path: 'admin/pacientes/nuevo', component: PacienteFormComponent, title: 'Nuevo Paciente' },
     { path: 'admin/pacientes/editar/:id', component: PacienteFormComponent, title: 'Editar Paciente' },
-    
-    // { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
-    // { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
+   // { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
+   // { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
 
     // Infraestructura
     { path: 'admin/consultorios', component: ConsultorioListComponent, title: 'Gestión de Consultorios' },
