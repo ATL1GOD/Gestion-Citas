@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 // Importación de todos los modelos y servicios necesarios
-import { CitaConsultaService, CitaConsultaCreatePayload } from '../../services/cita-consulta.service';
+import {
+  CitaConsultaService,
+  CitaConsultaCreatePayload,
+} from '../../services/cita-consulta.service';
 import { PacienteService } from '../../services/paciente.service';
 import { DoctorService } from '../../services/doctor.service';
 import { EspecialidadService } from '../../services/especialidad.service';
@@ -17,16 +25,15 @@ import { Especialidad } from '../../models/especialidad.model';
 import { Consultorio } from '../../models/consultorio.model';
 import { Estatus } from '../../models/estatus.model';
 
-
-
 @Component({
   selector: 'app-cita-form',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './cita-form.component.html',
-  styleUrl: './cita-form.component.css'
+  styleUrl: './cita-form.component.css',
 })
-export class CitaFormComponent {
+export class CitaFormComponent implements OnInit {
+  // Asegúrate de que implementa OnInit
   citaForm!: FormGroup;
   error: string | null = null;
 
@@ -55,8 +62,9 @@ export class CitaFormComponent {
       hora: ['', Validators.required],
       motivo: ['', Validators.required],
       pacienteId: [null, Validators.required],
-      especialidadId: [null, Validators.required], // El usuario selecciona primero la especialidad
-      doctorId: [null, Validators.required],
+      especialidadId: [null, Validators.required],
+      // Inicializa doctorId como deshabilitado. Se habilitará cuando se seleccione una especialidad.
+      doctorId: [{ value: null, disabled: true }, Validators.required],
       consultorioId: [null, Validators.required],
       estatusId: [null, Validators.required],
     });
@@ -64,28 +72,70 @@ export class CitaFormComponent {
     this.cargarDatosDeApoyo();
 
     // Lógica para el filtrado dinámico de doctores por especialidad
-    this.citaForm.get('especialidadId')?.valueChanges.subscribe(especialidadId => {
-      this.citaForm.get('doctorId')?.reset(); // Resetea el doctor seleccionado
-      if (especialidadId) {
-        this.doctoresFiltrados = this.doctores.filter(d => d.especialidad.idEspecialidad == especialidadId);
-      } else {
-        this.doctoresFiltrados = [];
-      }
-    });
+    this.citaForm
+      .get('especialidadId')
+      ?.valueChanges.subscribe((especialidadId) => {
+        const doctorControl = this.citaForm.get('doctorId');
+        doctorControl?.reset(); // Resetea el doctor seleccionado
+        console.log('Especialidad seleccionada (ID):', especialidadId); // Debugging
+        if (especialidadId) {
+          // El filtro es correcto según el modelo Doctor.especialidad.idEspecialidad
+          this.doctoresFiltrados = this.doctores.filter(
+            (d) =>
+              d.especialidad && d.especialidad.idEspecialidad == especialidadId
+          );
+          doctorControl?.enable(); // Habilita el control del doctor
+          console.log(
+            'Doctores filtrados por especialidad:',
+            this.doctoresFiltrados
+          ); // Debugging
+        } else {
+          this.doctoresFiltrados = [];
+          doctorControl?.disable(); // Deshabilita si no hay especialidad seleccionada
+        }
+      });
   }
 
   cargarDatosDeApoyo(): void {
-    // Cargar todos los datos necesarios para los selects del formulario
-    this.pacienteService.getAll().subscribe(data => this.pacientes = data);
-    this.doctorService.getAll().subscribe(data => this.doctores = data);
-    this.especialidadService.getAll().subscribe(data => this.especialidades = data);
-    this.consultorioService.getAll().subscribe(data => {
-        // Filtramos para mostrar solo consultorios disponibles
-        this.consultorios = data.filter(c => c.estatus.nombre.toLowerCase() === 'disponible');
+    // Cargar pacientes
+    this.pacienteService.getAll().subscribe((data) => {
+      this.pacientes = data;
+      console.log('Pacientes cargados:', this.pacientes); // Debugging
     });
-    this.estatusService.getAll().subscribe(data => {
-        // Filtramos para mostrar solo estatus relevantes para agendar
-        this.estatusLista = data.filter(e => ['Agendada', 'Confirmada'].includes(e.nombre));
+
+    // Cargar todos los doctores
+    this.doctorService.getAll().subscribe((data) => {
+      this.doctores = data;
+      console.log('TODOS los doctores cargados:', this.doctores); // Debugging
+    });
+
+    // Cargar especialidades
+    this.especialidadService.getAll().subscribe((data) => {
+      this.especialidades = data;
+      console.log('Especialidades cargadas:', this.especialidades); // Debugging
+    });
+
+    // Cargar y filtrar consultorios
+    this.consultorioService.getAll().subscribe((data) => {
+      console.log('Datos de consultorios recibidos (antes del filtro):', data); // Debugging
+      // El filtro es correcto según el modelo Consultorio.estatus.nombre
+      this.consultorios = data.filter(
+        (c) => c.estatus && c.estatus.nombre.toLowerCase() === 'disponible'
+      );
+      console.log(
+        'Consultorios disponibles (después del filtro):',
+        this.consultorios
+      ); // Debugging
+    });
+
+    // Cargar y filtrar estatus
+    this.estatusService.getAll().subscribe((data) => {
+      console.log('Datos de estatus recibidos (antes del filtro):', data); // Debugging
+      // El filtro es correcto según el modelo Estatus.nombre
+      this.estatusLista = data.filter(
+        (e) => e.nombre && ['Agendada', 'Confirmada'].includes(e.nombre)
+      );
+      console.log('Estatus filtrados (después del filtro):', this.estatusLista); // Debugging
     });
   }
 
@@ -94,8 +144,22 @@ export class CitaFormComponent {
       this.citaForm.markAllAsTouched();
       return;
     }
-    
-    const payload: CitaConsultaCreatePayload = this.citaForm.value;
+
+    // Asegúrate de que hora tenga el formato correcto "HH:mm:ss"
+    const horaValue = this.citaForm.get('hora')?.value;
+    const formattedHora = horaValue ? `${horaValue}:00` : ''; // Añade segundos si solo es HH:mm
+
+    const payload: CitaConsultaCreatePayload = {
+      ...this.citaForm.value,
+      hora: formattedHora, // Usa la hora formateada
+    };
+
+    // La propiedad especialidadId en CitaConsultaCreatePayload está en tu servicio
+    // y no en el formulario. Asegúrate de que el backend no lo espere si no lo envías,
+    // o agrégalo al payload si es necesario y está en el formulario.
+    // Según tu cita-consulta.service.ts, especialidadId SÍ está en el payload.
+    // Esto significa que necesitas el valor del campo especialidadId del formulario
+    // para ser incluido en el payload. Tu código actual ya lo hace porque usa this.citaForm.value.
 
     this.citaService.create(payload).subscribe({
       next: () => {
@@ -103,9 +167,10 @@ export class CitaFormComponent {
         this.router.navigate(['/citas']);
       },
       error: (err) => {
-        this.error = "Error al agendar la cita. Verifique los datos e intente de nuevo.";
+        this.error =
+          'Error al agendar la cita. Verifique los datos e intente de nuevo.';
         console.error(err);
-      }
+      },
     });
   }
 }
