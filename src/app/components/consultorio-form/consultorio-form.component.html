@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header">
+          <h3 class="mb-0">{{ isEditMode ? 'Editar Consultorio' : 'Crear Nuevo Consultorio' }}</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="consultorioForm" (ngSubmit)="onSubmit()">
+            
+            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="numero" class="form-label">Número de Consultorio</label>
+                <input type="text" id="numero" class="form-control" formControlName="numero">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="piso" class="form-label">Piso</label>
+                <input type="text" id="piso" class="form-control" formControlName="piso">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea id="descripcion" class="form-control" formControlName="descripcion" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="estatus" class="form-label">Estatus</label>
+              <select id="estatus" class="form-select" formControlName="estatus" [compareWith]="compareEstatus">
+                <option [ngValue]="null" disabled>Seleccione un estatus...</option>
+                <option *ngFor="let est of estatusLista" [ngValue]="est">{{ est.nombre }}</option>
+              </select>
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+              <a routerLink="/admin/consultorios" class="btn btn-secondary me-2">Cancelar</a>
+              <button type="submit" class="btn btn-primary" [disabled]="consultorioForm.invalid">
+                {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,20 +13,20 @@ import { EspecialidadFormComponent } from '../app/components/especialidad-form/e
 import { PacienteListComponent } from '../app/components/paciente-list/paciente-list.component';
 import { PacienteFormComponent } from '../app/components/paciente-form/paciente-form.component';
 
-/*
+
 // Sección 3: Citas y Agendas
-import { ConsultorioListComponent } from './features/admin/consultorios/consultorio-list/consultorio-list.component';
-import { ConsultorioFormComponent } from './features/admin/consultorios/consultorio-form/consultorio-form.component';
-import { HorarioListComponent } from './features/admin/horarios/horario-list/horario-list.component';
-import { HorarioFormComponent } from './features/admin/horarios/horario-form/horario-form.component';
-import { AsignacionListComponent } from './features/admin/asignaciones/asignacion-list/asignacion-list.component';
-import { AsignacionFormComponent } from './features/admin/asignaciones/asignacion-form/asignacion-form.component';
-*/
+import { ConsultorioListComponent } from '../app/components/consultorio-list/consultorio-list.component';
+import { ConsultorioFormComponent } from '../app/components/consultorio-form/consultorio-form.component';
+import { HorarioListComponent } from '../app/components/horario-list/horario-list.component';
+import { HorarioFormComponent } from '../app/components/horario-form/horario-form.component';
+import { AsignacionListComponent } from '../app/components/asignacion-list/asignacion-list.component';
+import { AsignacionFormComponent } from '../app/components/asignacion-form/asignacion-form.component';
 import { CitaListComponent } from '../app/components/cita-list/cita-list.component';
 import { CitaFormComponent } from '../app/components/cita-form/cita-form.component';
 
+/*
 // Sección 4: Módulo Clínico
-/*import { MedicamentoListComponent } from './features/admin/medicamentos/medicamento-list/medicamento-list.component';
+import { MedicamentoListComponent } from './features/admin/medicamentos/medicamento-list/medicamento-list.component';
 import { MedicamentoFormComponent } from './features/admin/medicamentos/medicamento-form/medicamento-form.component';
 import { RecetaListComponent } from './features/recetas/receta-list/receta-list.component';
 import { RecetaFormComponent } from './features/recetas/receta-form/receta-form.component';
@@ -66,7 +66,7 @@ export const routes: Routes = [
     
     // { path: 'admin/doctores', component: DoctorListComponent, title: 'Gestión de Doctores' },
     // { path: 'admin/recepcionistas', component: RecepcionistaListComponent, title: 'Gestión de Recepcionistas' },
-/*
+
     // Infraestructura
     { path: 'admin/consultorios', component: ConsultorioListComponent, title: 'Gestión de Consultorios' },
     { path: 'admin/consultorios/nuevo', component: ConsultorioFormComponent, title: 'Nuevo Consultorio' },
@@ -77,7 +77,7 @@ export const routes: Routes = [
 
     { path: 'admin/asignaciones', component: AsignacionListComponent, title: 'Gestión de Asignaciones' },
     { path: 'admin/asignaciones/nuevo', component: AsignacionFormComponent, title: 'Nueva Asignación' },
-*/
+
     // Catálogos
     { path: 'admin/especialidades', component: EspecialidadListComponent, title: 'Gestión de Especialidades' },
     { path: 'admin/especialidades/nuevo', component: EspecialidadFormComponent, title: 'Nueva Especialidad' },
