@@ -16,3 +16,12 @@ export interface Doctor {
   citas: CitaConsulta;
   historiales: HistorialClinico;
 }
+
+export interface DoctorReceta {
+  idDoctor: number;
+  noCedula: string;
+  nombre: string;
+  apellidoPat: string;
+  apellidoMat: string;
+  especialidad: Especialidad;
+}

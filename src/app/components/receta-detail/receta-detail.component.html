@@ -12,12 +12,13 @@
       <div class="row">
         <div class="col-md-6">
           <p>
-            <strong>Paciente:</strong> {{ receta.paciente.usuario.nombre }}
-            {{ receta.paciente.usuario.apellidoPat }}
+            <strong>Paciente:</strong> {{ receta.paciente.nombre }}
+            {{ receta.paciente.apellidoPat }}
+            {{ receta.paciente.apellidoMat }}
           </p>
           <p>
-            <strong>Doctor:</strong> Dr. {{ receta.doctor.usuario.nombre }}
-            {{ receta.doctor.usuario.apellidoPat }}
+            <strong>Doctor:</strong> Dr. {{ receta.doctor.nombre }}
+            {{ receta.doctor.apellidoPat }}
           </p>
         </div>
         <div class="col-md-6">
@@ -46,12 +47,10 @@
         <tbody>
           <tr *ngFor="let detalle of receta.recetaDetalles">
             <td>
-              {{ detalle.medicamento.nombre }} ({{
-                detalle.medicamento.presentacion
-              }})
+              {{ detalle.medicamento }}
             </td>
-            <td>{{ detalle.dosis }}</td>
-            <td>{{ detalle.indicaciones }}</td>
+            <td>{{ detalle.dosificacion }}</td>
+            <td>{{ detalle.instrucciones }}</td>
             <td class="text-end">
               <button
                 (click)="eliminarDetalle(detalle.idRecetaDetalle)"

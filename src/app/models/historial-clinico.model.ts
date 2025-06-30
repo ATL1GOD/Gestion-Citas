@@ -1,6 +1,6 @@
 import { CitaConsulta } from './cita-consulta.model';
-import { Doctor } from './doctor.model';
-import { Paciente } from './paciente.model';
+import { DoctorReceta } from './doctor.model';
+import { PacienteReceta } from './paciente.model';
 import { Receta } from './receta.model';
 
 /**
@@ -14,9 +14,10 @@ export interface HistorialClinico {
   notas: string;
   fechaDiagnostico: string; // Formato "YYYY-MM-DD"
   fechaAlta?: string; // Opcional
-  paciente: Paciente;
-  doctor: Doctor;
+  paciente: PacienteReceta;
+  doctor: DoctorReceta;
   cita: CitaConsulta;
   receta?: Receta; // Opcional
-  archivoAdjuntoPath?: string; // Nombre del archivo, para construir el enlace de descarga
+  archivoAdjuntoData?: String; // Datos del archivo adjunto, si existe
+  archivoAdjuntoPath?: Blob; // Nombre del archivo, para construir el enlace de descarga
 }

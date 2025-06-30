@@ -66,7 +66,7 @@ export class HistorialDetailComponent implements OnInit {
     if (this.historial?.archivoAdjuntoPath) {
       this.historialService.downloadFile(this.historialId).subscribe({
         next: (blob) => {
-          saveAs(blob, this.historial!.archivoAdjuntoPath);
+          //saveAs(blob, this.historial!.archivoAdjuntoPath);
         },
         error: (err) => this.error = "No se pudo descargar el archivo."
       });

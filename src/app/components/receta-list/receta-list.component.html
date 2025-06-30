@@ -27,12 +27,14 @@
             </td>
             <td>{{ receta.fecha | date : "dd/MM/yyyy" }}</td>
             <td>
-              {{ receta.paciente.usuario.nombre }}
-              {{ receta.paciente.usuario.apellidoPat }}
+              {{ receta.paciente.nombre }}
+              {{ receta.paciente.apellidoPat }}
+              {{ receta.paciente.apellidoMat }}
             </td>
             <td>
-              Dr. {{ receta.doctor.usuario.nombre }}
-              {{ receta.doctor.usuario.apellidoPat }}
+              Dr. {{ receta.doctor.nombre }}
+              {{ receta.doctor.apellidoPat }}
+              {{ receta.doctor.apellidoMat }}
             </td>
             <td class="text-end">
               <a

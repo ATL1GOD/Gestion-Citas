@@ -27,25 +27,10 @@
               </div>
               <div class="col-md-6">
                 <label for="cita" class="form-label">Cita Asociada</label>
-<<<<<<< HEAD
                 <select id="cita" class="form-select" formControlName="citaId" [disabled]="!historialForm.get('pacienteId')?.value">
                   <option [ngValue]="null" disabled>2. Seleccione la cita...</option>
                   <option *ngFor="let c of citas" [value]="c.idCita">
                     {{ c.fecha | date:'dd/MM/yyyy' }} - {{c.motivo}} (Dr. {{ c.doctor.apellido }})
-=======
-                <select
-                  id="cita"
-                  class="form-select"
-                  formControlName="citaId"
-                  [disabled]="!historialForm.get('pacienteId')?.value"
-                >
-                  <option [ngValue]="null" disabled>
-                    2. Seleccione la cita...
-                  </option>
-                  <option *ngFor="let c of citas" [value]="c.idCita">
-                    {{ c.fecha | date : "dd/MM/yyyy" }} - {{ c.motivo }} (Dr.
-                    {{ c.doctor.usuario.apellidoPat }})
->>>>>>> 3e80ffb3f04de85572066434831bdd3b4f03c3dd
                   </option>
                 </select>
               </div>
