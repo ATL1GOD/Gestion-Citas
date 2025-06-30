@@ -3,6 +3,6 @@
  * Corresponde a la entidad TipoUsuario.
  */
 export interface TipoUsuario {
-  id: number;
+  idTipoUsuario: number;
   nombre: string;
 }

@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class ReporteService {
 
-  private apiUrl = `${environment.apiUrl}/api/reportes`; // URL base del ReporteController
+  private apiUrl = `${environment.apiUrl}/reportes`; // URL base del ReporteController
 
   constructor(private http: HttpClient) { }
 

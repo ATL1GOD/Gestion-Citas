@@ -21,7 +21,7 @@ export interface RecepcionistaCreatePayload {
 })
 export class RecepcionistaService {
 
-  private apiUrl = `${environment.apiUrl}/api/recepcionistas`; // URL base del RecepcionistaController
+  private apiUrl = `${environment.apiUrl}/recepcionistas`; // URL base del RecepcionistaController
 
   constructor(private http: HttpClient) { }
 

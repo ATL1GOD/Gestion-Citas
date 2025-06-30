@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let horario of horarios">
-            <td><strong>{{ horario.id }}</strong></td>
+            <td><strong>{{ horario.idHorario }}</strong></td>
             <td>
               <span *ngIf="horario.horario" class="badge bg-info">Hora Única</span>
               <span *ngIf="horario.horaInicio" class="badge bg-primary">Rango</span>
@@ -31,7 +31,8 @@
               <span *ngIf="horario.horaInicio">De {{ horario.horaInicio }} a {{ horario.horaFin }}</span>
             </td>
             <td class="text-end">
-              <button (click)="eliminarHorario(horario.id)" class="btn btn-sm btn-danger" title="Eliminar">
+              
+              <button (click)="eliminarHorario(horario.idHorario)" class="btn btn-sm btn-danger" title="Eliminar">
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>

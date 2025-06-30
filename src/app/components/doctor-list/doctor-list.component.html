@@ -28,10 +28,10 @@
               <td><span class="badge bg-info text-dark">{{ doctor.especialidad.nombre }}</span></td>
               <td>{{ doctor.usuario.email }}</td>
               <td class="text-end">
-                <a [routerLink]="['/admin/doctores/editar', doctor.id]" class="btn btn-sm btn-warning me-2" title="Editar">
+                <a [routerLink]="['/admin/doctores/editar', doctor.idDoctor]" class="btn btn-sm btn-warning me-2" title="Editar">
                   <i class="bi bi-pencil-fill"></i>
                 </a>
-                <button (click)="eliminarDoctor(doctor.id)" class="btn btn-sm btn-danger" title="Eliminar">
+                <button (click)="eliminarDoctor(doctor.idDoctor)" class="btn btn-sm btn-danger" title="Eliminar">
                   <i class="bi bi-trash-fill"></i>
                 </button>
               </td>

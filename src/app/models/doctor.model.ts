@@ -1,5 +1,7 @@
 import { Especialidad } from './especialidad.model';
 import { Usuario } from './usuario.model';
+import { CitaConsulta } from './cita-consulta.model';
+import { HistorialClinico } from './historial-clinico.model';
 
 /**
  * Representa a un doctor, con su información de usuario y su especialidad.
@@ -7,8 +9,10 @@ import { Usuario } from './usuario.model';
  * Archivo de origen: DoctorController.java
  */
 export interface Doctor {
-  id: number;
+  idDoctor: number;
   noCedula: string;
   usuario: Usuario;
   especialidad: Especialidad;
+  citas: CitaConsulta;
+  historiales: HistorialClinico;
 }

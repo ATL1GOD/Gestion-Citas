@@ -54,7 +54,7 @@ export class HistorialFormComponent implements OnInit {
         // En un caso real, aquí se llamarían las citas solo de ese paciente.
         // Por simplicidad del ejemplo, filtramos de una lista completa.
         this.citaService.getAll().subscribe(todasLasCitas => {
-            this.citas = todasLasCitas.filter(c => c.paciente.id == pacienteId);
+            this.citas = todasLasCitas.filter(c => c.paciente.curp == pacienteId);
         });
       } else {
         this.citas = [];
@@ -74,7 +74,7 @@ export class HistorialFormComponent implements OnInit {
     }
     
     // El doctorId se obtiene de la cita seleccionada
-    const citaSeleccionada = this.citas.find(c => c.id == this.historialForm.get('citaId')?.value);
+    const citaSeleccionada = this.citas.find(c => c.idCita == this.historialForm.get('citaId')?.value);
     if (!citaSeleccionada) {
         this.error = "Por favor, seleccione una cita válida.";
         return;
@@ -82,7 +82,7 @@ export class HistorialFormComponent implements OnInit {
     
     const payload: HistorialCreatePayload = {
       ...this.historialForm.value,
-      doctorId: citaSeleccionada.doctor.id
+      doctorId: citaSeleccionada.doctor.noCedula
     };
 
     this.historialService.create(payload).subscribe({

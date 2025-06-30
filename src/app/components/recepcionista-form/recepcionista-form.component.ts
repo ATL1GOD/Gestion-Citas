@@ -75,8 +75,8 @@ export class RecepcionistaFormComponent implements OnInit {
           apellidoMat: data.usuario.apellidoMat,
           email: data.usuario.email,
           telefono: data.usuario.telefono,
-          horarioId: data.horario.id,
-          consultorioId: data.consultorio.id,
+          horarioId: data.horario.idHorario,
+          consultorioId: data.consultorio.idConsultorio,
         });
       },
       error: (err) => this.error = "No se pudo cargar la información del recepcionista."

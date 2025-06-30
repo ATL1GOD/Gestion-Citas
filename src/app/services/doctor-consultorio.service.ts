@@ -24,7 +24,7 @@ export interface DoctorConsultorioUpdatePayload {
 })
 export class DoctorConsultorioService {
 
-  private apiUrl = `${environment.apiUrl}/api/asignaciones`; // URL base del DoctorConsultorioController
+  private apiUrl = `${environment.apiUrl}/asignaciones`; // URL base del DoctorConsultorioController
 
   constructor(private http: HttpClient) { }
 

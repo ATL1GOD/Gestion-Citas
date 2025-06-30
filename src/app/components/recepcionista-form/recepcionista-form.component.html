@@ -31,14 +31,14 @@
                   <label for="consultorioId" class="form-label">Consultorio Asignado</label>
                   <select id="consultorioId" class="form-select" formControlName="consultorioId">
                     <option [ngValue]="null" disabled>Seleccione un consultorio...</option>
-                    <option *ngFor="let c of consultorios" [value]="c.id">N° {{ c.numero }} (Piso {{ c.piso }})</option>
+                    <option *ngFor="let c of consultorios" [value]="c.idConsultorio">N° {{ c.numero }} (Piso {{ c.piso }})</option>
                   </select>
                 </div>
                 <div class="col-md-6 mb-3">
                   <label for="horarioId" class="form-label">Horario de Trabajo</label>
                    <select id="horarioId" class="form-select" formControlName="horarioId">
                     <option [ngValue]="null" disabled>Seleccione un horario...</option>
-                    <option *ngFor="let h of horarios" [value]="h.id">{{ h.horaInicio }} - {{ h.horaFin }}</option>
+                    <option *ngFor="let h of horarios" [value]="h.idHorario">{{ h.horaInicio }} - {{ h.horaFin }}</option>
                   </select>
                 </div>
               </div>

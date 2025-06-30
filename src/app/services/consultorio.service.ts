@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class ConsultorioService {
 
-  private apiUrl = `${environment.apiUrl}/api/consultorios`; // URL base del ConsultorioController
+  private apiUrl = `${environment.apiUrl}/consultorios`; // URL base del ConsultorioController
 
   constructor(private http: HttpClient) { }
 

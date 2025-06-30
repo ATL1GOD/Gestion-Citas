@@ -67,7 +67,7 @@ export class UsuarioFormComponent implements OnInit {
         this.usuarioForm.patchValue({
           ...data,
           // El control 'tipoUsuario' espera el objeto completo para que el select funcione
-          tipoUsuario: this.tiposUsuario.find(tu => tu.id === data.tipoUsuario.id)
+          tipoUsuario: this.tiposUsuario.find(tu => tu.idTipoUsuario === data.tipoUsuario.idTipoUsuario)
         });
       },
       error: (err) => this.error = "No se pudo cargar el usuario."
@@ -76,7 +76,7 @@ export class UsuarioFormComponent implements OnInit {
   
   // Para que el <select> compare objetos correctamente
   compareRoles(t1: TipoUsuario, t2: TipoUsuario): boolean {
-    return t1 && t2 ? t1.id === t2.id : t1 === t2;
+    return t1 && t2 ? t1.idTipoUsuario === t2.idTipoUsuario : t1 === t2;
   }
 
   onSubmit(): void {

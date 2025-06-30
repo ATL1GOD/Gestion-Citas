@@ -5,7 +5,7 @@ import { TipoUsuario } from './tipo-usuario.model';
  * Es utilizado por Paciente, Doctor y Recepcionista.
  */
 export interface Usuario {
-  id: number;
+  idUsuario: number;
   nombre: string;
   apellidoPat: string;
   apellidoMat: string;
