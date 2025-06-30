@@ -13,8 +13,8 @@ export interface Doctor {
   noCedula: string;
   usuario: Usuario;
   especialidad: Especialidad;
-  citas: CitaConsulta;
-  historiales: HistorialClinico;
+  citas?: CitaConsulta;
+  historiales?: HistorialClinico;
 }
 
 export interface DoctorReceta {

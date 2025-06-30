@@ -3,47 +3,120 @@
     <div class="col-lg-10">
       <div class="card shadow-sm">
         <div class="card-header">
-          <h3 class="mb-0">{{ isEditMode ? 'Editar Doctor' : 'Registrar Nuevo Doctor' }}</h3>
+          <h3 class="mb-0">
+            {{ isEditMode ? "Editar Doctor" : "Registrar Nuevo Doctor" }}
+          </h3>
         </div>
         <div class="card-body">
           <form [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
-            
             <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
             <fieldset formGroupName="usuario" class="border p-3 mb-3">
-              <legend class="w-auto px-2 fs-6">Datos Personales y de Cuenta</legend>
+              <legend class="w-auto px-2 fs-6">
+                Datos Personales y de Cuenta
+              </legend>
               <div class="row">
-                <div class="col-md-4 mb-3"><label class="form-label">Nombre(s)</label><input type="text" class="form-control" formControlName="nombre"></div>
-                <div class="col-md-4 mb-3"><label class="form-label">Apellido Paterno</label><input type="text" class="form-control" formControlName="apellidoPat"></div>
-                <div class="col-md-4 mb-3"><label class="form-label">Apellido Materno</label><input type="text" class="form-control" formControlName="apellidoMat"></div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Nombre(s)</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    formControlName="nombre"
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Apellido Paterno</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    formControlName="apellidoPat"
+                  />
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Apellido Materno</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    formControlName="apellidoMat"
+                  />
+                </div>
               </div>
               <div class="row">
-                 <div class="col-md-6 mb-3"><label class="form-label">Email</label><input type="email" class="form-control" formControlName="email"></div>
-                <div class="col-md-6 mb-3"><label class="form-label">Contraseña</label><input type="password" class="form-control" formControlName="contrasena"><div class="form-text" *ngIf="isEditMode">Dejar en blanco para no modificar.</div></div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Email</label
+                  ><input
+                    type="email"
+                    class="form-control"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Contraseña</label
+                  ><input
+                    type="password"
+                    class="form-control"
+                    formControlName="contrasena"
+                  />
+                  <div class="form-text" *ngIf="isEditMode">
+                    Dejar en blanco para no modificar.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Teléfono</label
+                  ><input
+                    type="tel"
+                    class="form-control"
+                    formControlName="telefono"
+                  />
+                </div>
               </div>
             </fieldset>
 
-             <fieldset class="border p-3 mb-3">
+            <fieldset class="border p-3 mb-3">
               <legend class="w-auto px-2 fs-6">Información Profesional</legend>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="noCedula" class="form-label">Número de Cédula Profesional</label>
-                  <input type="text" id="noCedula" class="form-control" formControlName="noCedula">
+                  <label for="noCedula" class="form-label"
+                    >Número de Cédula Profesional</label
+                  >
+                  <input
+                    type="text"
+                    id="noCedula"
+                    class="form-control"
+                    formControlName="noCedula"
+                  />
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="especialidad" class="form-label">Especialidad</label>
-                  <select id="especialidad" class="form-select" formControlName="especialidad" [compareWith]="compareEspecialidades">
-                    <option [ngValue]="null" disabled>Seleccione una especialidad...</option>
-                    <option *ngFor="let esp of especialidades" [ngValue]="esp">{{ esp.nombre }}</option>
+                  <label for="especialidad" class="form-label"
+                    >Especialidad</label
+                  >
+                  <select
+                    id="especialidad"
+                    class="form-select"
+                    formControlName="especialidad"
+                    [compareWith]="compareEspecialidades"
+                  >
+                    <option [ngValue]="null" disabled>
+                      Seleccione una especialidad...
+                    </option>
+                    <option *ngFor="let esp of especialidades" [ngValue]="esp">
+                      {{ esp.nombre }}
+                    </option>
                   </select>
                 </div>
               </div>
             </fieldset>
 
             <div class="d-flex justify-content-end mt-3">
-              <a routerLink="/admin/doctores" class="btn btn-secondary me-2">Cancelar</a>
-              <button type="submit" class="btn btn-primary" [disabled]="doctorForm.invalid">
-                {{ isEditMode ? 'Actualizar Doctor' : 'Guardar Doctor' }}
+              <a routerLink="/admin/doctores" class="btn btn-secondary me-2"
+                >Cancelar</a
+              >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="doctorForm.invalid"
+              >
+                {{ isEditMode ? "Actualizar Doctor" : "Guardar Doctor" }}
               </button>
             </div>
           </form>
