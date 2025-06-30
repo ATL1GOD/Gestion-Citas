@@ -42,9 +42,7 @@
               <td>{{ historial.diagnostico }}</td>
               <td class="text-end">
                 <button
-                  (click)="
-                    enviarPorEmail(historial.paciente.idPaciente, $event)
-                  "
+                  (click)="enviarPorEmailPorNombre(historial.paciente.nombre, $event)"
                   class="btn btn-sm btn-outline-success"
                   title="Enviar Historial por Email"
                 >

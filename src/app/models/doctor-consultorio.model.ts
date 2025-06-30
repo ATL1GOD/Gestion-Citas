@@ -8,9 +8,9 @@ import { Horario } from './horario.model';
  * Archivo de origen: DoctorConsultorioController.java
  */
 export interface DoctorConsultorio {
-  doctor: Doctor;
-  consultorio: Consultorio;
-  horario: Horario;
+  idDoctor: number;
+  idConsultorio: number;
+  idHorario: number;
 }
 
 /**

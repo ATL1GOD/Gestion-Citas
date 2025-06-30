@@ -22,18 +22,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let a of asignaciones">
-            <td>Dr. {{ a.doctor.usuario.nombre }} {{ a.doctor.usuario.apellidoPat }} {{a.doctor.usuario.apellidoMat}}</td>
-            <td>{{ a.doctor.especialidad.nombre }}</td>
-            <td>N° {{ a.consultorio.numero }} (Piso {{ a.consultorio.piso }})</td>
-            <td>{{ a.horario.horaInicio }} - {{ a.horario.horaFin }}</td>
+            <td>{{ obtenerNombreDoctor(a.idDoctor) }}</td>
+            <td>{{ obtenerEspecialidadDoctor(a.idDoctor) }}</td>
+            <td>{{ obtenerNumeroConsultorio(a.idConsultorio) }}</td>
+            <td>{{ obtenerHorarioRango(a.idHorario) }}</td>
             <td class="text-end">
-              <button (click)="eliminarAsignacion(a)" class="btn btn-sm btn-danger" title="Eliminar">
+              <button
+                (click)="eliminarAsignacion(a)"
+                class="btn btn-sm btn-danger"
+                title="Eliminar"
+              >
                 <i class="bi bi-trash-fill"></i>
               </button>
             </td>
           </tr>
           <tr *ngIf="asignaciones.length === 0 && !error">
-            <td colspan="5" class="text-center text-muted">No hay asignaciones para mostrar.</td>
+            <td colspan="5" class="text-center text-muted">
+              No hay asignaciones para mostrar.
+            </td>
           </tr>
         </tbody>
       </table>

@@ -57,7 +57,7 @@ export class AsignacionFormComponent implements OnInit {
       this.asignacionForm.markAllAsTouched();
       return;
     }
-    
+
     this.asignacionService.create(this.asignacionForm.value).subscribe({
       next: () => this.router.navigate(['/admin/asignaciones']),
       error: (err) => this.error = 'Error al crear la asignación. Verifique que no exista previamente.'
